@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="rectangle">
+
+    <!-- Couleur de fond du bouton (choisissez une couleur qui contraste bien avec la teinte que vous choisirez pour l'icône) -->
+    <!-- Exemple: Un gris très clair ou blanc -->
+    <solid android:color="#F5F5F5" /> <!-- Ou @android:color/white ou une couleur définie dans colors.xml -->
+
+    <!-- Rayon des coins arrondis (ajustez la valeur en dp) -->
+    <corners android:radius="12dp" />
+
+</shape>

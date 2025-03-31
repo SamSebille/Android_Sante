@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="rectangle">
+
+    <!-- Couleur de fond quand sélectionné (ex : bleu très clair) -->
+    <solid android:color="#E3F2FD" /> <!-- Ou @color/activitySelectedBackground -->
+
+    <!-- Coins arrondis (même rayon que le défaut) -->
+    <corners android:radius="12dp" />
+
+    <!-- Bordure quand sélectionné -->
+    <stroke
+            android:width="2dp"
+            android:color="@color/Primary_blue" /> <!-- Votre couleur bleue primaire -->
+
+</shape>

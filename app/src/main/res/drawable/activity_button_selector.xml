@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- État sélectionné : utilise le fond arrondi AVEC bordure -->
+    <item android:state_selected="true"
+          android:drawable="@drawable/background_activite_selected" />
+
+    <!-- État par défaut : utilise le fond arrondi SANS bordure -->
+    <item android:drawable="@drawable/background_activite" />
+</selector>

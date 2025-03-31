@@ -1,16 +1,233 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".ActivitiesFragment">
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        tools:context=".ActivitiesFragment">
 
     <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Page d'activités"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:layout_marginEnd="8dp"
+            android:textAlignment="center"
+            android:text="Ajouter une activité"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/Primary_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="0.009"
+            />
+    <androidx.core.widget.NestedScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:fillViewport="true"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="0.0">
 
-</FrameLayout>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+            <!-- Filtres populaires/toutes -->
+            <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    app:singleSelection="true"
+                    app:selectionRequired="true">
+
+                <com.google.android.material.chip.Chip
+                        android:id="@+id/chipPopulaires"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+ populaires"
+                        android:checked="true"/>
+
+                <com.google.android.material.chip.Chip
+                        android:id="@+id/chipToutes"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Toutes"/>
+            </com.google.android.material.chip.ChipGroup>
+
+            <!-- Grille des activités -->
+            <GridLayout
+                    android:id="@+id/gridActivities"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:columnCount="3"
+                    android:useDefaultMargins="true">
+
+                <!-- Ligne 1 -->
+                <ImageButton
+                        android:id="@+id/btnActivityBike"
+                        android:src="@drawable/directions_bike_24"
+                        android:contentDescription="Vélo"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/activity_button_selector"
+                        android:tint="@color/Primary_blue"
+                        android:padding="16dp"
+                        android:scaleType="fitCenter"
+                        android:layout_gravity="center_horizontal"/>
+
+                <ImageButton
+                        android:id="@+id/btnActivitySwim"
+                        android:src="@drawable/pool"
+                        android:contentDescription="Natation"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/activity_button_selector"
+                        android:tint="@color/Primary_blue"
+                        android:padding="16dp"
+                        android:scaleType="fitCenter"
+                        android:layout_gravity="center_horizontal"
+                />
+
+                <ImageButton
+                        android:id="@+id/btnActivityWeights"
+                        android:src="@drawable/weight"
+                        android:contentDescription="Musculation"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/activity_button_selector"
+                        android:tint="@color/Primary_blue"
+                        android:padding="16dp"
+                        android:scaleType="fitCenter"
+                        android:layout_gravity="center_horizontal"
+                />
+
+                <!-- Ligne 2 -->
+                <ImageButton
+                        android:id="@+id/btnActivityRun"
+                        android:src="@drawable/directions_run_24"
+                        android:contentDescription="Course"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/activity_button_selector"
+                        android:tint="@color/Primary_blue"
+                        android:padding="16dp"
+                        android:scaleType="fitCenter"
+                        android:layout_gravity="center_horizontal"
+                />
+
+                <ImageButton
+                        android:id="@+id/btnActivityWalk"
+                        android:src="@drawable/directions_walk_24"
+                        android:contentDescription="Marche"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/activity_button_selector"
+                        android:tint="@color/Primary_blue"
+                        android:padding="16dp"
+                        android:scaleType="fitCenter"
+                        android:layout_gravity="center_horizontal"
+                />
+
+                <ImageButton
+                        android:id="@+id/btnActivityMore"
+                        android:src="@drawable/add"
+                        android:contentDescription="Plus"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/activity_button_selector"
+                        android:tint="@color/Primary_blue"
+                        android:padding="16dp"
+                        android:scaleType="fitCenter"
+
+
+                />
+
+            </GridLayout>
+
+            <!-- Sélection de la durée -->
+            <TextView
+                    android:id="@+id/tvDurationLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="32dp"
+                    android:text="Comment de temps a duré votre activité ?"
+                    android:textColor="@color/Secondary_blue"/> <!-- Définir dans colors.xml -->
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                <ImageButton
+                        android:id="@+id/btnMinus"
+                        app:icon="@drawable/remove"
+                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:background="@color/Secondary_blue"
+                        android:contentDescription="Moins"
+                />
+
+                <TextView
+                        android:id="@+id/tvDuration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:text="0:30"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                        android:textColor="@color/Primary_blue"/>
+
+                <ImageButton
+                        android:id="@+id/btnPlus"
+                        app:icon="@drawable/remove"
+                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:background="@color/Secondary_blue"
+                        android:contentDescription="Plus"
+                />
+
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/tvDurationUnit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="4dp"
+                    android:text="Heures"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                    android:textColor="@color/Secondary_blue"/>
+
+
+            <!-- Bouton OK -->
+            <Button
+                    android:id="@+id/btnOk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:text="OK"
+                    android:backgroundTint="@color/Primary_blue"
+                    app:cornerRadius="20dp"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
