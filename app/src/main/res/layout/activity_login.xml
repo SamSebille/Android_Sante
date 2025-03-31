@@ -40,26 +40,26 @@
             android:text="Login"
             app:cornerRadius="16dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
-            app:layout_constraintStart_toStartOf="@+id/guideline2" android:id="@+id/materialButton2"
+            app:layout_constraintStart_toStartOf="@+id/guideline2" android:id="@+id/loginButton"
             app:layout_constraintHorizontal_bias="0.495" app:layout_constraintBottom_toTopOf="@+id/guideline5"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/password" android:textSize="20sp"
             app:backgroundTint="@color/Secondary_blue"/>
     <EditText
             android:layout_width="225dp"
             android:layout_height="48dp"
             android:inputType="textEmailAddress"
             android:ems="10"
-            android:id="@+id/editTextTextEmailAddress"
+            android:id="@+id/username"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="@+id/guideline2" android:background="@drawable/rouned_shape_white"
-            app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
+            app:layout_constraintBottom_toTopOf="@+id/password"
             app:layout_constraintTop_toBottomOf="@+id/textView" android:hint="  username"/>
     <EditText
             android:layout_width="223dp"
             android:layout_height="48dp"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/password"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="@+id/guideline2" android:background="@drawable/rouned_shape_white"
             app:layout_constraintBottom_toBottomOf="@+id/imageView" app:layout_constraintTop_toTopOf="@+id/imageView"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content" android:id="@+id/textView"
             app:layout_constraintTop_toTopOf="@+id/imageView" app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword" android:textSize="48sp"
+            app:layout_constraintBottom_toTopOf="@+id/password" android:textSize="48sp"
             android:textColorHint="#FFFFFF" android:textColor="#FFFFFF" app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintVertical_bias="0.366"/>
 

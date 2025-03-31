@@ -1,5 +1,6 @@
 package com.example.android_sante;
 
+import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.android_sante.databinding.ActivityLoginBinding;
@@ -14,7 +15,11 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
     }
 
-    private void login() {
-
-    }
-}
+    @Override
+    public void onResume() {
+        super.onResume();
+        binding.loginButton.setOnClickListener(view -> {
+            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            startActivity(intent);
+        });
+    }}
