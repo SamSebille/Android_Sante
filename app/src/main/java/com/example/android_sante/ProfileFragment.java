@@ -38,15 +38,12 @@ public class ProfileFragment extends Fragment {
      * @return A new instance of fragment ProfileFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2, @NonNull LayoutInflater inflater, ViewGroup container) {
+    public static ProfileFragment newInstance(String param1, String param2) {
         ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
-        // Inflate the layout for this fragment
-        FragmentProfileBinding binding = FragmentProfileBinding.inflate(inflater, container, false);
-        View view = binding.getRoot();
         return fragment;
     }
 
@@ -62,7 +59,10 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        FragmentProfileBinding binding = FragmentProfileBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        return binding.getRoot();
     }
 }
