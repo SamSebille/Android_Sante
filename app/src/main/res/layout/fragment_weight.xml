@@ -1,16 +1,227 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".WeightFragment">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@android:color/transparent">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Page du suivi de poids"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-</FrameLayout>
+        <!-- Un seul conteneur parent pour tous les éléments dans ScrollView -->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:paddingBottom="24dp">
+
+            <!-- Premier bloc - VOTRE ÉVOLUTION -->
+            <LinearLayout
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="50dp"
+                    android:background="@android:color/transparent">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="VOTRE ÉVOLUTION"
+                        android:textSize="15sp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="-10dp"/>
+
+                <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="16dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp"
+                            android:background="@color/white">
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_marginBottom="12dp"
+                                android:background="@drawable/main_container_weight">
+
+                            <Button
+                                    android:id="@+id/btnWeek"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="36dp"
+                                    android:text="@string/semaine"
+                                    android:textColor="#3F51B5"
+                                    android:textSize="12sp"
+                                    android:background="@drawable/button_selected"
+                                    android:paddingHorizontal="8dp"
+                                    android:paddingVertical="2dp"
+                                    android:layout_marginEnd="4dp"/>
+
+                            <Button
+                                    android:id="@+id/btnMonth"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="36dp"
+                                    android:text="@string/mois"
+                                    android:textColor="#6B707C"
+                                    android:textSize="12sp"
+                                    android:background="@drawable/button_unselected"
+                                    android:paddingHorizontal="8dp"
+                                    android:paddingVertical="2dp"
+                                    android:layout_marginEnd="4dp"/>
+
+                            <Button
+                                    android:id="@+id/btnAllTime"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="36dp"
+                                    android:text="@string/annee"
+                                    android:textColor="#6B707C"
+                                    android:textSize="12sp"
+                                    android:background="@drawable/button_unselected"
+                                    android:paddingHorizontal="8dp"
+                                    android:paddingVertical="2dp"/>
+                        </LinearLayout>
+
+                        <com.github.mikephil.charting.charts.BarChart
+                                android:id="@+id/barChart"
+                                android:layout_width="match_parent"
+                                android:layout_height="250dp" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <!-- Deuxième bloc - SAISIE POIDS -->
+            <LinearLayout
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="24dp"
+                    android:background="@android:color/transparent">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="SAISIE POIDS"
+                        android:textSize="15sp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="-10dp"/>
+
+                <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="16dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:gravity="center_vertical"
+                            android:background="@color/white">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:hint="Poids (kg)">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/editTextWeight"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="numberDecimal"
+                                    android:maxLength="5"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <Button
+                                android:id="@+id/btnSaveWeight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sauvegarder"
+                                android:layout_marginStart="8dp"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <!-- Troisième bloc - VOTRE PROGRESSION -->
+            <LinearLayout
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="24dp"
+                    android:background="@android:color/transparent">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="VOTRE PROGRESSION"
+                        android:textSize="15sp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="-10dp"/>
+
+                <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="16dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="16dp"
+                            android:gravity="center_vertical"
+                            android:background="@color/white">
+
+                        <ProgressBar
+                                android:id="@+id/progressBar"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_marginEnd="16dp"/>
+
+                        <TextView
+                                android:id="@+id/tvProgressionText"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textSize="16sp"
+                                android:text="Progression par rapport à votre objectif !"
+                                android:fontFamily="@font/poppins"/>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

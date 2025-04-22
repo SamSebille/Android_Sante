@@ -206,7 +206,7 @@ public class ActivitiesFragment extends Fragment {
             String message = String.format(Locale.getDefault(),
                     "Activité '%s' ajoutée pour %s heures.",
                     activityType, durationText);
-            Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show();
+            //Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show();
 
             // Optionnel: Naviguer vers un autre fragment ou fermer quelque chose
             // Exemple : getParentFragmentManager().popBackStack();
@@ -217,12 +217,12 @@ public class ActivitiesFragment extends Fragment {
         chipGroupFilter.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.chipPopulaires) {
                 // Logique pour filtrer/afficher les activités populaires
-                Toast.makeText(requireContext(), "Filtre: Populaires", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(requireContext(), "Filtre: Populaires", Toast.LENGTH_SHORT).show();
                 // Ici, vous pourriez masquer/afficher certains boutons dans la grille,
                 // ou recharger une liste différente si la grille est dynamique.
             } else if (checkedId == R.id.chipToutes) {
                 // Logique pour afficher toutes les activités
-                Toast.makeText(requireContext(), "Filtre: Toutes", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(requireContext(), "Filtre: Toutes", Toast.LENGTH_SHORT).show();
                 // Afficher tous les boutons/activités.
             } else {
                 // Aucun chip sélectionné (si selectionRequired=false) ou état inattendu

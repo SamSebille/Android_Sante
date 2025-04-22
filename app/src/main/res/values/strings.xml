@@ -6,4 +6,7 @@
     <string name="food">Repas</string>
     <string name="profile">Profil</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="semaine">Semaine</string>
+    <string name="mois">Mois</string>
+    <string name="annee">Année</string>
 </resources>
