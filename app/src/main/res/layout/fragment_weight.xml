@@ -57,49 +57,47 @@
                                 android:layout_marginBottom="12dp"
                                 android:background="@drawable/main_container_weight">
 
-                            <Button
+                            <com.google.android.material.button.MaterialButton
                                     android:id="@+id/btnWeek"
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
                                     android:layout_height="36dp"
                                     android:text="@string/semaine"
-                                    android:textColor="#3F51B5"
-                                    android:textSize="12sp"
-                                    android:background="@drawable/button_selected"
-                                    android:paddingHorizontal="8dp"
-                                    android:paddingVertical="2dp"
-                                    android:layout_marginEnd="4dp"/>
+                                    android:insetTop="0dp"
+                                    android:insetBottom="0dp"
+                                    android:layout_marginHorizontal="3dp"
+                                    android:layout_marginVertical="3dp"
+                                    style="@style/MyButtonSelected"/>
 
-                            <Button
+                            <com.google.android.material.button.MaterialButton
                                     android:id="@+id/btnMonth"
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
                                     android:layout_height="36dp"
                                     android:text="@string/mois"
-                                    android:textColor="#6B707C"
-                                    android:textSize="12sp"
-                                    android:background="@drawable/button_unselected"
-                                    android:paddingHorizontal="8dp"
-                                    android:paddingVertical="2dp"
-                                    android:layout_marginEnd="4dp"/>
+                                    android:insetTop="0dp"
+                                    android:insetBottom="0dp"
+                                    android:layout_marginHorizontal="3dp"
+                                    android:layout_marginVertical="3dp"
+                                    style="@style/MyButtonSelected"/>
 
-                            <Button
+                            <com.google.android.material.button.MaterialButton
                                     android:id="@+id/btnAllTime"
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
                                     android:layout_height="36dp"
                                     android:text="@string/annee"
-                                    android:textColor="#6B707C"
-                                    android:textSize="12sp"
-                                    android:background="@drawable/button_unselected"
-                                    android:paddingHorizontal="8dp"
-                                    android:paddingVertical="2dp"/>
+                                    android:insetTop="0dp"
+                                    android:insetBottom="0dp"
+                                    android:layout_marginHorizontal="3dp"
+                                    android:layout_marginVertical="3dp"
+                                    style="@style/MyButtonSelected"/>
                         </LinearLayout>
 
                         <com.github.mikephil.charting.charts.BarChart
                                 android:id="@+id/barChart"
                                 android:layout_width="match_parent"
-                                android:layout_height="250dp" />
+                                android:layout_height="250dp"/>
 
                     </LinearLayout>
 
@@ -155,12 +153,13 @@
                                     android:maxLength="5"/>
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <Button
+                        <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btnSaveWeight"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Sauvegarder"
-                                android:layout_marginStart="8dp"/>
+                                android:layout_marginStart="8dp"
+                                style="@style/MyButton"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -218,10 +217,71 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+                <com.google.android.material.button.MaterialButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Un objectif ?"
+                        style="@style/MyButton"/>
+
+                <!-- Quatrième bloc - VOTRE OBJECTIF -->
+                <LinearLayout android:layout_gravity="center_horizontal"
+                              android:layout_width="350dp"
+                              android:layout_height="wrap_content"
+                              android:orientation="vertical"
+                              android:layout_marginTop="24dp"
+                              android:background="@android:color/transparent">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="VOTRE OBJECTIF"
+                            android:textSize="15sp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="-10dp"/>
+
+                    <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_margin="16dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="2dp">
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="16dp"
+                                android:gravity="center_vertical"
+                                android:background="@color/white">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:hint="Poids (kg)">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/editObjectiveTextWeight"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="numberDecimal"
+                                        android:maxLength="5"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <Button
+                                    android:id="@+id/btnSaveObjectiveWeight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Sauvegarder"
+                                    android:layout_marginStart="8dp"
+                                    style="@style/MyButton"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
-
     </ScrollView>
-
 </LinearLayout>
