@@ -222,6 +222,8 @@ public class ActivitiesFragment extends Fragment {
         if (selectedActivityButton != null && selectedActivityButton.getVisibility() == View.GONE){
             selectedActivityButton.setBackgroundResource(R.drawable.activity_button_selector);
 
+            selectedActivityButton.setActivated(false);
+
             selectedActivityButton = null;
             selectFirstVisibleActivity();
         }
