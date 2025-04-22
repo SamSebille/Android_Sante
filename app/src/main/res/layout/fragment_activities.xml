@@ -81,10 +81,12 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/activity_button_selector"
-                        android:tint="@color/Primary_blue"
+                        app:tint="@color/Primary_blue"
                         android:padding="16dp"
                         android:scaleType="fitCenter"
-                        android:layout_gravity="center_horizontal"/>
+                        android:layout_gravity="center_horizontal"
+                        android:tag="popular"
+                />
 
                 <ImageButton
                         android:id="@+id/btnActivitySwim"
@@ -93,10 +95,11 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/activity_button_selector"
-                        android:tint="@color/Primary_blue"
+                        app:tint="@color/Primary_blue"
                         android:padding="16dp"
                         android:scaleType="fitCenter"
                         android:layout_gravity="center_horizontal"
+                        android:tag="popular"
                 />
 
                 <ImageButton
@@ -106,10 +109,11 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/activity_button_selector"
-                        android:tint="@color/Primary_blue"
+                        app:tint="@color/Primary_blue"
                         android:padding="16dp"
                         android:scaleType="fitCenter"
                         android:layout_gravity="center_horizontal"
+                        android:tag="popular"
                 />
 
                 <!-- Ligne 2 -->
@@ -120,10 +124,11 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/activity_button_selector"
-                        android:tint="@color/Primary_blue"
+                        app:tint="@color/Primary_blue"
                         android:padding="16dp"
                         android:scaleType="fitCenter"
                         android:layout_gravity="center_horizontal"
+                        android:tag="popular"
                 />
 
                 <ImageButton
@@ -133,24 +138,24 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/activity_button_selector"
-                        android:tint="@color/Primary_blue"
+                        app:tint="@color/Primary_blue"
                         android:padding="16dp"
                         android:scaleType="fitCenter"
                         android:layout_gravity="center_horizontal"
+                        android:tag="popular"
                 />
 
                 <ImageButton
                         android:id="@+id/btnActivityMore"
-                        android:src="@drawable/add"
+                        android:src="@drawable/martial_arts"
                         android:contentDescription="Plus"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/activity_button_selector"
-                        android:tint="@color/Primary_blue"
+                        app:tint="@color/Primary_blue"
                         android:padding="16dp"
                         android:scaleType="fitCenter"
-
-
+                        android:tag="popular"
                 />
 
             </GridLayout>
@@ -163,7 +168,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="32dp"
                     android:text="Comment de temps a duré votre activité ?"
-                    android:textColor="@color/Secondary_blue"/> <!-- Définir dans colors.xml -->
+                    android:textColor="@color/Secondary_blue"/>
 
             <LinearLayout
                     android:layout_width="wrap_content"

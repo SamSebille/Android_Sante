@@ -1,6 +1,7 @@
 package com.example.android_sante;
 
 import android.os.Bundle;
+import android.widget.*;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,14 +10,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat; // Pour la gestion des couleurs/drawables
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.button.MaterialButton;
@@ -73,12 +70,11 @@ public class ActivitiesFragment extends Fragment {
     }
 
     private TextView tvDuration;
-    private ImageButton btnMinus, btnPlus; // Changé en ImageButton
-    private MaterialButton btnOk;
+    private ImageButton btnMinus, btnPlus;
+    private Button btnOk;
     private GridLayout gridActivities;
     private ImageButton selectedActivityButton = null;
     private ChipGroup chipGroupFilter;
-    // Supprimé : BottomNavigationView (non présent dans votre XML)
 
     private int durationMinutes = 30; // Durée initiale en minutes
     private final int DURATION_STEP = 15; // Incrément/décrément en minutes
@@ -89,7 +85,7 @@ public class ActivitiesFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflater le layout pour ce fragment
-        View view = inflater.inflate(R.layout.fragment_activities, container, false); // Assurez-vous que le nom du layout est correct
+        View view = inflater.inflate(R.layout.fragment_activities, container, false);
         return view;
     }
 
@@ -97,42 +93,37 @@ public class ActivitiesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Initialisation des vues APRES que la vue ait été créée
-        // Utilisez view.findViewById car nous sommes dans un Fragment
         tvDuration = view.findViewById(R.id.tvDuration);
-        btnMinus = view.findViewById(R.id.btnMinus); // Trouve l'ImageButton
-        btnPlus = view.findViewById(R.id.btnPlus);   // Trouve l'ImageButton
+        btnMinus = view.findViewById(R.id.btnMinus);
+        btnPlus = view.findViewById(R.id.btnPlus);
         btnOk = view.findViewById(R.id.btnOk);
         gridActivities = view.findViewById(R.id.gridActivities);
         chipGroupFilter = view.findViewById(R.id.chipGroupFilter);
-        // Supprimé : Initialisation BottomNavigationView
 
         // Configuration initiale
         updateDurationDisplay();
         setupActivityButtons();
         setupTimeButtons();
         setupOkButton();
-        setupChipGroupListener(); // Ajout pour gérer les filtres si besoin
+        setupChipGroupListener();
 
-        // Pré-sélectionner une activité (ex: Marche) si nécessaire
-        // Assurez-vous d'avoir ajouté le background selector aux ImageButtons dans le XML
+        filterActivities(chipGroupFilter.getCheckedChipId());
+
         ImageButton initialButton = view.findViewById(R.id.btnActivityWalk);
-        if (initialButton != null) {
+        if (initialButton != null && initialButton.getVisibility() == View.VISIBLE) {
             selectActivityButton(initialButton);
+        } else {
+            selectFirstVisibleActivity();
         }
     }
 
     private void setupActivityButtons() {
-        // Assurez-vous que gridActivities a bien été trouvé
         if (gridActivities == null) return;
 
         for (int i = 0; i < gridActivities.getChildCount(); i++) {
             View child = gridActivities.getChildAt(i);
             if (child instanceof ImageButton) {
                 ImageButton button = (ImageButton) child;
-                // IMPORTANT: Pour que la sélection visuelle fonctionne, ajoutez
-                // android:background="@drawable/activity_button_selector"
-                // à chaque ImageButton dans votre XML.
                 button.setOnClickListener(v -> selectActivityButton(button));
             }
         }
@@ -142,25 +133,12 @@ public class ActivitiesFragment extends Fragment {
         // Désélectionner l'ancien bouton s'il existe
         if (selectedActivityButton != null) {
             selectedActivityButton.setSelected(false);
-            // Si vous n'utilisez pas le sélecteur de fond, vous devrez manuellement
-            // changer le fond ici (par ex. remettre le fond gris)
-            //selectedActivityButton.setBackgroundResource(R.drawable.background_gris_normal); // Exemple
-            //selectedActivityButton.setColorFilter(ContextCompat.getColor(requireContext(), R.color.colorPrimaryText)); // Exemple pour remettre teinte
         }
 
         // Sélectionner le nouveau bouton
         buttonToSelect.setSelected(true);
-        // Si vous n'utilisez pas le sélecteur de fond, vous devrez manuellement
-        // changer le fond ici (par ex. mettre le fond bleu avec bordure)
-        // buttonToSelect.setBackgroundResource(R.drawable.background_bleu_selection); // Exemple
-        // Vous pouvez aussi changer la teinte de l'icône si désiré
-        // buttonToSelect.setColorFilter(ContextCompat.getColor(requireContext(), R.color.Primary_blue));
 
         selectedActivityButton = buttonToSelect;
-
-        // Vous pouvez stocker le type d'activité ici si besoin
-        // String activityType = buttonToSelect.getContentDescription().toString();
-        // Log.d("ActivitySelection", "Selected: " + activityType);
     }
 
 
@@ -179,14 +157,14 @@ public class ActivitiesFragment extends Fragment {
         } else { // newDuration > MAX_DURATION
             durationMinutes = MAX_DURATION;
         }
-        updateDurationDisplay(); // Mettre à jour l'affichage dans tous les cas pour refléter le blocage éventuel
+        updateDurationDisplay();
     }
 
     private void updateDurationDisplay() {
         long hours = TimeUnit.MINUTES.toHours(durationMinutes);
-        long minutes = durationMinutes % 60; // Utiliser modulo pour les minutes restantes
+        long minutes = durationMinutes % 60;
 
-        // Formatte en H:MM (ex: 0:30, 1:15, 2:00)
+        // Formatte en H:MM
         String formattedTime = String.format(Locale.getDefault(), "%d:%02d", hours, minutes);
         tvDuration.setText(formattedTime);
     }
@@ -206,27 +184,72 @@ public class ActivitiesFragment extends Fragment {
             String message = String.format(Locale.getDefault(),
                     "Activité '%s' ajoutée pour %s heures.",
                     activityType, durationText);
-            //Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show();
-
-            // Optionnel: Naviguer vers un autre fragment ou fermer quelque chose
-            // Exemple : getParentFragmentManager().popBackStack();
         });
     }
 
     private void setupChipGroupListener() {
+
+        if (chipGroupFilter == null) return;
+
         chipGroupFilter.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == R.id.chipPopulaires) {
-                // Logique pour filtrer/afficher les activités populaires
-                //Toast.makeText(requireContext(), "Filtre: Populaires", Toast.LENGTH_SHORT).show();
-                // Ici, vous pourriez masquer/afficher certains boutons dans la grille,
-                // ou recharger une liste différente si la grille est dynamique.
-            } else if (checkedId == R.id.chipToutes) {
-                // Logique pour afficher toutes les activités
-                //Toast.makeText(requireContext(), "Filtre: Toutes", Toast.LENGTH_SHORT).show();
-                // Afficher tous les boutons/activités.
-            } else {
-                // Aucun chip sélectionné (si selectionRequired=false) ou état inattendu
-            }
+            filterActivities(checkedId);
         });
     }
+
+    private void filterActivities(int checkedId) {
+        if (gridActivities == null) return;
+
+        boolean showAll = (checkedId == R.id.chipToutes);
+
+        for (int i = 0; i < gridActivities.getChildCount(); i++){
+            View child = gridActivities.getChildAt(i);
+            if (child instanceof ImageButton) {
+                ImageButton button = (ImageButton) child;
+                Object tag = button.getTag();
+
+                if (showAll) {
+                    button.setVisibility(View.VISIBLE);
+                } else {
+                    if (tag != null && "popular".equals(tag.toString())){
+                        button.setVisibility(View.VISIBLE);
+                    } else {
+                        button.setVisibility(View.GONE);
+                    }
+                }
+            }
+        }
+
+        if (selectedActivityButton != null && selectedActivityButton.getVisibility() == View.GONE){
+            selectedActivityButton.setBackgroundResource(R.drawable.activity_button_selector);
+
+            selectedActivityButton = null;
+            selectFirstVisibleActivity();
+        }
+    }
+
+    private void selectFirstVisibleActivity() {
+        if (gridActivities == null) return;
+        for (int i = 0; i < gridActivities.getChildCount(); i++) {
+            View child = gridActivities.getChildAt(i);
+            if (child instanceof ImageButton && child.getVisibility() == View.VISIBLE) {
+                selectActivityButton((ImageButton) child);
+                break;
+            }
+        }
+    }
+
+    private void SelectActivityButton(ImageButton buttonToSelect){
+        if (buttonToSelect.getVisibility() == View.GONE){
+            return;
+        }
+
+        if (selectedActivityButton != null && selectedActivityButton != buttonToSelect){
+            selectedActivityButton.setActivated(false);
+        }
+
+        buttonToSelect.setActivated(true);
+
+        selectedActivityButton = buttonToSelect;
+    }
+
 }
