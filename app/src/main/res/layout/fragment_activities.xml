@@ -158,6 +158,43 @@
                         android:tag="popular"
                 />
 
+                <!-- Ligne 3 -->
+                <ImageButton
+                    android:id="@+id/ski"
+                    android:src="@drawable/ski"
+                    android:contentDescription="Ski"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/activity_button_selector"
+                    app:tint="@color/Primary_blue"
+                    android:padding="16dp"
+                    android:scaleType="fitCenter"
+                />
+
+                <ImageButton
+                    android:id="@+id/hiking"
+                    android:src="@drawable/hiking"
+                    android:contentDescription="Hiking"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/activity_button_selector"
+                    app:tint="@color/Primary_blue"
+                    android:padding="16dp"
+                    android:scaleType="fitCenter"
+                />
+
+                <ImageButton
+                    android:id="@+id/gymnastics"
+                    android:src="@drawable/gymnastics"
+                    android:contentDescription="Gymnastics"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/activity_button_selector"
+                    app:tint="@color/Primary_blue"
+                    android:padding="16dp"
+                    android:scaleType="fitCenter"
+                />
+
             </GridLayout>
 
             <!-- Sélection de la durée -->
