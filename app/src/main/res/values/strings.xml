@@ -9,4 +9,7 @@
     <string name="semaine">Semaine</string>
     <string name="mois">Mois</string>
     <string name="annee">Année</string>
+    <string name="activity_days_description">Jours d\'activité</string>
+    <string name="heart_description">BPM</string>
+    <string name="activity_time_description">Temps d\'activité</string>
 </resources>
