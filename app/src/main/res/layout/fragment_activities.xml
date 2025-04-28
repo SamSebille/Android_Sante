@@ -67,8 +67,9 @@
             <!-- Grille des activités -->
             <GridLayout
                     android:id="@+id/gridActivities"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginTop="24dp"
                     android:columnCount="3"
                     android:useDefaultMargins="true">
@@ -217,7 +218,7 @@
 
                 <ImageButton
                         android:id="@+id/btnMinus"
-                        app:icon="@drawable/remove"
+                        android:src="@drawable/remove"
                         android:layout_height="50dp"
                         android:layout_width="50dp"
                         android:background="@color/Secondary_blue"
@@ -236,7 +237,7 @@
 
                 <ImageButton
                         android:id="@+id/btnPlus"
-                        app:icon="@drawable/remove"
+                        android:src="@drawable/add"
                         android:layout_height="50dp"
                         android:layout_width="50dp"
                         android:background="@color/Secondary_blue"

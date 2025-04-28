@@ -1,16 +1,171 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".LunchFragment">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@android:color/transparent">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Page des repas"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-</FrameLayout>
+        <!-- Un seul conteneur parent pour tous les éléments dans ScrollView -->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:paddingBottom="24dp">
+
+            <LinearLayout
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="380dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="24dp"
+                    android:background="@android:color/transparent">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="CHOIX DU REPAS"
+                        android:textSize="15sp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="-10dp"/>
+
+                <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="16dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp"
+                            android:background="@color/white">
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_marginBottom="12dp"
+                                android:background="@drawable/main_container_weight">
+
+                            <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnMeat"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="30dp"
+                                    android:text="@string/meat"
+                                    android:insetTop="0dp"
+                                    android:insetBottom="0dp"
+                                    android:layout_marginHorizontal="3dp"
+                                    android:layout_marginVertical="3dp"
+                                    style="@style/MyButtonSelected"/>
+
+                            <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnFish"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:text="@string/fish"
+                                    android:insetTop="0dp"
+                                    android:insetBottom="0dp"
+                                    android:layout_marginHorizontal="3dp"
+                                    android:layout_marginVertical="3dp"
+                                    style="@style/MyButtonUnselected"/>
+
+                            <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnFood"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:text="@string/food"
+                                    android:insetTop="0dp"
+                                    android:insetBottom="0dp"
+                                    android:layout_marginHorizontal="3dp"
+                                    android:layout_marginVertical="3dp"
+                                    style="@style/MyButtonUnselected"/>
+
+                            <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnCereales"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:text="@string/cereals"
+                                    android:insetTop="0dp"
+                                    android:insetBottom="0dp"
+                                    android:layout_marginHorizontal="3dp"
+                                    android:layout_marginVertical="3dp"
+                                    style="@style/MyButtonUnselected"/>
+                        </LinearLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Choisissez un produit"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+                            <AutoCompleteTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="none"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Unité :"
+                                    android:layout_gravity="center_vertical"/>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="100dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="16dp"
+                                    android:hint="Unité"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+                                <AutoCompleteTextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="none"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Quantité :"
+                                    android:layout_gravity="center_vertical"/>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:hint="Quantité" >
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/editTextQuantity"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:inputType="numberDecimal"
+                                        android:maxLength="5"/>
+                            </com.google.android.material.textfield.TextInputLayout>                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

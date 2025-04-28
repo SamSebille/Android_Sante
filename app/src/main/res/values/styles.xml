@@ -4,13 +4,15 @@
     <style name="MyButtonSelected" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="backgroundTint">@color/white</item>
         <item name="android:textColor">#4169E1</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">11sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:layout_height">30dp</item>
         <item name="cornerRadius">20dp</item>
         <item name="elevation">0dp</item>
         <item name="rippleColor">#1A4169E1</item>
         <item name="fontFamily">@font/poppins</item>
         <item name="android:letterSpacing">0</item>
+        <item name="android:textAlignment">center</item>
         <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">8dp</item>
     </style>
@@ -18,13 +20,15 @@
     <!-- Style pour les boutons non sélectionnés -->
     <style name="MyButtonUnselected" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:textColor">#8C8C8C</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:layout_height">30dp</item>
         <item name="cornerRadius">20dp</item>
         <item name="backgroundTint">@android:color/transparent</item>
         <item name="rippleColor">#1A4169E1</item>
         <item name="elevation">0dp</item>
         <item name="fontFamily">@font/poppins</item>
         <item name="android:letterSpacing">0</item>
+        <item name="android:textAlignment">center</item>
         <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">8dp</item>
     </style>

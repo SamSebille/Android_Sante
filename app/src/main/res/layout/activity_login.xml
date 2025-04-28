@@ -97,13 +97,14 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <!-- Bouton de connexion -->
-                        <Button
+                        <com.google.android.material.button.MaterialButton
                                 android:id="@+id/loginButton"
                                 android:layout_width="match_parent"
                                 android:layout_height="56dp"
                                 android:text="Se connecter"
                                 android:textAllCaps="false"
-                                android:fontFamily="@font/poppins" />
+                                android:fontFamily="@font/poppins"
+                                style="@style/MyButton"/>
 
                         <!-- Lien mot de passe oublié -->
                         <TextView

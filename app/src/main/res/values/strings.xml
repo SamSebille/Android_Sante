@@ -3,7 +3,7 @@
     <string name="home">Accueil</string>
     <string name="activity">Activités</string>
     <string name="weight">Poids</string>
-    <string name="food">Repas</string>
+    <string name="food">Végétaux</string>
     <string name="profile">Profil</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="semaine">Semaine</string>
@@ -12,4 +12,7 @@
     <string name="activity_days_description">Jours d\'activité</string>
     <string name="heart_description">BPM</string>
     <string name="activity_time_description">Temps d\'activité</string>
+    <string name="cereals">Céréales</string>
+    <string name="fish">Poissons</string>
+    <string name="meat">Viandes</string>
 </resources>
