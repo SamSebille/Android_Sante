@@ -22,5 +22,13 @@
     "username": "pbernard",
     "password": "motDePasse789",
     "dateOfBirth": "1995-03-30"
+  },
+  {
+    "id": "004",
+    "name": "Pierre",
+    "surname": "Bernard",
+    "username": "a",
+    "password": "a",
+    "dateOfBirth": "1995-03-30"
   }
 ]
