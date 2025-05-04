@@ -1,9 +1,14 @@
 package com.example.android_sante;
 
 import android.content.Intent;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.android_sante.databinding.ActivityLoginBinding;
+
+// ... autres imports ...
+
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
@@ -19,7 +24,39 @@ public class LoginActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         binding.loginButton.setOnClickListener(view -> {
-            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-            startActivity(intent);
+
+            if (binding.editTextEmail.getText() == null || binding.editTextEmail.getText().toString().isEmpty()) {
+                binding.editTextEmail.setError("Please enter your email");
+                return;
+            }
+            if (binding.editTextPassword.getText() == null || binding.editTextPassword.getText().toString().isEmpty()) {
+                binding.editTextPassword.setError("Please enter your password");
+                return;
+            }
+
+            String username = binding.editTextEmail.getText().toString();
+            String password = binding.editTextPassword.getText().toString();
+
+            List<Credential> userCredentials = JsonUtils.getUserCredentials(this);
+            boolean authenticated = false;
+
+            for (Credential credentials : userCredentials) {
+                if (username.equals(credentials.getUsername()) && password.equals(credentials.getPassword())) {
+                    authenticated = true;
+                    break;
+                }
+            }
+
+            if (authenticated) {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+            } else {
+                new AlertDialog.Builder(LoginActivity.this)
+                        .setTitle("Erreur de connexion")
+                        .setMessage("Email ou mot de passe invalide")
+                        .setPositiveButton("OK", null)
+                        .show();
+            }
         });
-    }}
+    }
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "001",
+    "name": "Jean",
+    "surname": "Dupont",
+    "username": "jdupont",
+    "password": "motDePasse123",
+    "dateOfBirth": "1990-01-15"
+  },
+  {
+    "id": "002",
+    "name": "Marie",
+    "surname": "Martin",
+    "username": "mmartin",
+    "password": "motDePasse456",
+    "dateOfBirth": "1985-07-22"
+  },
+  {
+    "id": "003",
+    "name": "Pierre",
+    "surname": "Bernard",
+    "username": "pbernard",
+    "password": "motDePasse789",
+    "dateOfBirth": "1995-03-30"
+  }
+]
