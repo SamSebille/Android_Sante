@@ -1,5 +1,7 @@
 package com.example.android_sante;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -15,21 +17,24 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.*;
 import com.google.android.material.button.MaterialButton;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+
+import static android.content.Intent.getIntent;
 
 public class WeightFragment extends Fragment {
 
     private FragmentWeightBinding binding;
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
 
     double currentWeight;
     double reachableWeight;
 
     private ArrayList<BarEntry> entries = new ArrayList<>();
     private int entryCount = 0;
+
+    private String id = "";
+    private DataBody dataBody;
 
     public WeightFragment() {
         // Required empty public constructor
@@ -45,7 +50,35 @@ public class WeightFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Intent intent = getActivity().getIntent();
+
+        this.id = intent.getStringExtra("ID");
+        if (!id.isBlank())
+            this.dataBody = JsonUtils.getDataBody(getContext(), Integer.parseInt(id));
+
+        this.initVariables(dataBody);
+    }
+
+    private void initVariables(DataBody dataBody) {
+        if (dataBody != null) {
+            if (dataBody.getWeights() != null) {
+                this.currentWeight = dataBody.getLastWeight();
+                for (float weight: dataBody.getWeights().values()) {
+                    this.updateGraphWeight(weight);
+                }
+            }
+            if (dataBody.getWeightGoal() != 0f ) {
+                this.reachableWeight = dataBody.getWeightGoal();
+                this.updateProgressWeight();
+                this.displayObjectiveWeight();            
+            }
+            
+        }
     }
 
     @Override
@@ -226,14 +259,14 @@ public class WeightFragment extends Fragment {
     }
 
     private void displayWeekData() {
-        // A faire plus tard
+        //TODO
     }
 
     private void displayMonthData() {
-        // A faire plus tard
+        //TODO
     }
 
     private void displayYearData() {
-        // A faire plus tard
+        //TODO
     }
 }

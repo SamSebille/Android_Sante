@@ -1,6 +1,6 @@
 [
   {
-    "id": "001",
+    "id": "1",
     "name": "Jean",
     "surname": "Dupont",
     "username": "jdupont",
@@ -8,7 +8,7 @@
     "dateOfBirth": "1990-01-15"
   },
   {
-    "id": "002",
+    "id": "2",
     "name": "Marie",
     "surname": "Martin",
     "username": "mmartin",
@@ -16,7 +16,7 @@
     "dateOfBirth": "1985-07-22"
   },
   {
-    "id": "003",
+    "id": "3",
     "name": "Pierre",
     "surname": "Bernard",
     "username": "pbernard",
@@ -24,10 +24,10 @@
     "dateOfBirth": "1995-03-30"
   },
   {
-    "id": "004",
+    "id": "4",
     "name": "Pierre",
     "surname": "Bernard",
-    "username": "a",
+    "username": "a@a",
     "password": "a",
     "dateOfBirth": "1995-03-30"
   }

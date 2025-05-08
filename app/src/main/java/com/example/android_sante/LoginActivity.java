@@ -1,6 +1,7 @@
 package com.example.android_sante;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,8 +24,9 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        binding.loginButton.setOnClickListener(view -> {
 
+        binding.loginButton.setOnClickListener(view -> {
+            String id = "";
             if (binding.editTextEmail.getText() == null || binding.editTextEmail.getText().toString().isEmpty()) {
                 binding.editTextEmail.setError("Please enter your email");
                 return;
@@ -42,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
 
             for (Credential credentials : userCredentials) {
                 if (username.equals(credentials.getUsername()) && password.equals(credentials.getPassword())) {
+                    id = String.valueOf(credentials.getId());
                     authenticated = true;
                     break;
                 }
@@ -49,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
 
             if (authenticated) {
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("ID", id);
                 startActivity(intent);
             } else {
                 new AlertDialog.Builder(LoginActivity.this)
