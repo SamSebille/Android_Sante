@@ -1,0 +1,162 @@
+[
+  {
+    "typeFood": "meat",
+    "nameFood": "Poulet grillé",
+    "caloriesperunits": {
+      "grammes": 165,
+      "portion": 247
+    }
+  },
+  {
+    "typeFood": "fish",
+    "nameFood": "Saumon",
+    "caloriesperunits": {
+      "grammes": 208,
+      "portion": 312
+    }
+  },
+  {
+    "typeFood": "vegetable",
+    "nameFood": "Brocoli",
+    "caloriesperunits": {
+      "grammes": 34,
+      "tasse": 55
+    }
+  },
+  {
+    "typeFood": "cereal",
+    "nameFood": "Riz brun",
+    "caloriesperunits": {
+      "grammes": 111,
+      "tasse cuite": 216
+    }
+  },
+  {
+    "typeFood": "meat",
+    "nameFood": "Bœuf haché",
+    "caloriesperunits": {
+      "grammes": 250,
+      "portion": 375
+    }
+  },
+  {
+    "typeFood": "fish",
+    "nameFood": "Thon",
+    "caloriesperunits": {
+      "grammes": 184,
+      "portion": 276
+    }
+  },
+  {
+    "typeFood": "vegetable",
+    "nameFood": "Carottes",
+    "caloriesperunits": {
+      "grammes": 41,
+      "tasse": 50
+    }
+  },
+  {
+    "typeFood": "cereal",
+    "nameFood": "Quinoa",
+    "caloriesperunits": {
+      "grammes": 120,
+      "tasse cuite": 222
+    }
+  },
+  {
+    "typeFood": "meat",
+    "nameFood": "Dinde",
+    "caloriesperunits": {
+      "grammes": 135,
+      "portion": 202
+    }
+  },
+  {
+    "typeFood": "fish",
+    "nameFood": "Cabillaud",
+    "caloriesperunits": {
+      "grammes": 82,
+      "portion": 123
+    }
+  },
+  {
+    "typeFood": "vegetable",
+    "nameFood": "Épinards",
+    "caloriesperunits": {
+      "grammes": 23,
+      "tasse": 41
+    }
+  },
+  {
+    "typeFood": "cereal",
+    "nameFood": "Avoine",
+    "caloriesperunits": {
+      "grammes": 68,
+      "tasse cuite": 166
+    }
+  },
+  {
+    "typeFood": "meat",
+    "nameFood": "Agneau",
+    "caloriesperunits": {
+      "grammes": 294,
+      "portion": 441
+    }
+  },
+  {
+    "typeFood": "fish",
+    "nameFood": "Crevettes",
+    "caloriesperunits": {
+      "grammes": 99,
+      "portion": 148
+    }
+  },
+  {
+    "typeFood": "vegetable",
+    "nameFood": "Pommes de terre",
+    "caloriesperunits": {
+      "grammes": 77,
+      "tasse": 134
+    }
+  },
+  {
+    "typeFood": "cereal",
+    "nameFood": "Orge",
+    "caloriesperunits": {
+      "grammes": 123,
+      "tasse cuite": 198
+    }
+  },
+  {
+    "typeFood": "meat",
+    "nameFood": "Porc",
+    "caloriesperunits": {
+      "grammes": 242,
+      "portion": 363
+    }
+  },
+  {
+    "typeFood": "fish",
+    "nameFood": "Sardines",
+    "caloriesperunits": {
+      "grammes": 208,
+      "portion": 312
+    }
+  },
+  {
+    "typeFood": "vegetable",
+    "nameFood": "Tomates",
+    "caloriesperunits": {
+      "grammes": 18,
+      "tasse": 32
+    }
+  },
+  {
+    "typeFood": "cereal",
+    "nameFood": "Millet",
+    "caloriesperunits": {
+      "grammes": 119,
+      "tasse cuite": 207
+    }
+  }
+]

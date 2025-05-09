@@ -1,10 +1,18 @@
 package com.example.android_sante;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.example.android_sante.databinding.FragmentLunchBinding;
+import com.google.android.material.button.MaterialButton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -12,7 +20,7 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class LunchFragment extends Fragment {
-
+    private FragmentLunchBinding binding;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -22,6 +30,16 @@ public class LunchFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private String id = "";
+
+    private Lunch lunch;
+
+    private List<Food> meat = new ArrayList<Food>();
+    private List<Food> fish = new ArrayList<Food>();
+    private List<Food> vegetable = new ArrayList<Food>();
+    private List<Food> cereal = new ArrayList<Food>();
+
+    private ArrayAdapter<String> adapterFood;
     public LunchFragment() {
         // Required empty public constructor
     }
@@ -57,6 +75,86 @@ public class LunchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lunch, container, false);
+        binding = FragmentLunchBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        Intent intent = getActivity().getIntent();
+
+        this.id = intent.getStringExtra("ID");
+        if (!id.isBlank())
+            this.lunch = JsonUtils.getLunch(getContext(), Integer.parseInt(id));
+
+        List<Food> foods = JsonUtils.getFood(getContext());
+
+        if (foods != null) {
+            foods.forEach(food  -> {
+                if (food.getTypeFood().equals("meat")) {
+                    meat.add(food);
+                } else if (food.getTypeFood().equals("fish")) {
+                    fish.add(food);
+                } else if (food.getTypeFood().equals("vegetable")) {
+                    vegetable.add(food);
+                } else if (food.getTypeFood().equals("cereal")) {
+                    cereal.add(food);
+                }
+            });
+            System.out.println("LOG meat: " + meat.size() + meat.toString());
+            System.out.println("LOG fish: " + fish.size() + fish.toString());
+            System.out.println("LOG vegetable: " + vegetable.size() + vegetable.toString());
+            System.out.println("LOG cereal: " + cereal.size() + cereal.toString());
+        }
+
+        // Sélection par défaut
+        selectedButtonGraph(binding.btnMeat);
+
+        // Listeners
+        binding.btnMeat.setOnClickListener(v -> selectedButtonGraph(binding.btnMeat));
+        binding.btnFish.setOnClickListener(v -> selectedButtonGraph(binding.btnFish));
+        binding.btnvegetables.setOnClickListener(v -> selectedButtonGraph(binding.btnvegetables));
+        binding.btnCereales.setOnClickListener(v -> selectedButtonGraph(binding.btnCereales));
+    }
+
+    private void selectedButtonGraph(MaterialButton selectedButton) {
+        MaterialButton[] buttons = {
+                binding.btnMeat,
+                binding.btnFish,
+                binding.btnvegetables,
+                binding.btnCereales
+        };
+        for (MaterialButton button : buttons) {
+            if (button.equals(selectedButton)) {
+                button.setTextAppearance(requireContext(), R.style.MyButtonSelected);
+                button.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.white));
+            } else {
+                button.setTextAppearance(requireContext(), R.style.MyButtonUnselected);
+                button.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), android.R.color.transparent));
+            }
+        }
+
+        // Mettre à jour le graphique selon la période sélectionnée
+        if (selectedButton == binding.btnMeat) {
+            displayfoods(meat);
+        } else if (selectedButton == binding.btnFish) {
+            displayfoods(fish);
+        } else if (selectedButton == binding.btnvegetables) {
+            displayfoods(vegetable);
+        } else if (selectedButton == binding.btnCereales) {
+            displayfoods(cereal);
+        }
+    }
+
+    private void displayfoods(List<Food> foods) {
+        List<String> foodNames = new ArrayList<>();
+        for (Food food : foods) {
+            foodNames.add(food.getNameFood());
+        }
+        binding.autoFood.setText(null, false);
+        adapterFood = new ArrayAdapter<>(getContext(), android.R.layout.simple_dropdown_item_1line, foodNames);
+        binding.autoFood.setAdapter(adapterFood);
     }
 }

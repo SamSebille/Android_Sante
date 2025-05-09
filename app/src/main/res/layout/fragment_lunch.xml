@@ -80,7 +80,7 @@
                                     style="@style/MyButtonUnselected"/>
 
                             <com.google.android.material.button.MaterialButton
-                                    android:id="@+id/btnFood"
+                                    android:id="@+id/btnvegetables"
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
                                     android:text="@string/food"
@@ -106,12 +106,13 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="Choisissez un produit"
-                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                android:id="@+id/dropDownFood">
 
                             <AutoCompleteTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:inputType="none"/>
+                                    android:inputType="none" android:id="@+id/autoFood"/>
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <LinearLayout
@@ -130,12 +131,13 @@
                                     android:layout_height="wrap_content"
                                     android:layout_margin="16dp"
                                     android:hint="Unité"
-                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                                    android:id="@+id/dropDownUnit">
 
                                 <AutoCompleteTextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:inputType="none"/>
+                                        android:inputType="none" android:id="@+id/autoUnit"/>
                             </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
 

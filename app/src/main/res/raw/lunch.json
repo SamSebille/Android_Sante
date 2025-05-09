@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "lunchFoods": [
+      {
+        "typeFood": "viandes",
+        "nameFood": "Poulet grillé",
+        "caloriesperunits": {
+          "grammes": 165,
+          "portion": 247
+        },
+        "chosenUnit": "grammes",
+        "quantity": 200
+      },
+      {
+        "typeFood": "végétaux",
+        "nameFood": "Brocoli",
+        "caloriesperunits": {
+          "grammes": 34,
+          "tasse": 55
+        },
+        "chosenUnit": "tasse",
+        "quantity": 1
+      }
+    ],
+    "totaleCalories": 450,
+    "date": "2023-10-12"
+  },
+  {
+    "id": 2,
+    "lunchFoods": [
+      {
+        "typeFood": "poissons",
+        "nameFood": "Saumon",
+        "caloriesperunits": {
+          "grammes": 208,
+          "portion": 312
+        },
+        "chosenUnit": "portion",
+        "quantity": 1
+      },
+      {
+        "typeFood": "céréales",
+        "nameFood": "Riz brun",
+        "caloriesperunits": {
+          "grammes": 111,
+          "tasse cuite": 216
+        },
+        "chosenUnit": "tasse cuite",
+        "quantity": 2
+      }
+    ],
+    "totaleCalories": 500,
+    "date": "2023-10-12"
+  },
+  {
+    "id": 3,
+    "lunchFoods": [
+      {
+        "typeFood": "viandes",
+        "nameFood": "Bœuf haché",
+        "caloriesperunits": {
+          "grammes": 250,
+          "portion": 375
+        },
+        "chosenUnit": "grammes",
+        "quantity": 150
+      },
+      {
+        "typeFood": "végétaux",
+        "nameFood": "Carottes",
+        "caloriesperunits": {
+          "grammes": 41,
+          "tasse": 50
+        },
+        "chosenUnit": "tasse",
+        "quantity": 1
+      }
+    ],
+    "totaleCalories": 550,
+    "date": "2023-10-12"
+  },
+  {
+    "id": 4,
+    "lunchFoods": [
+      {
+        "typeFood": "poissons",
+        "nameFood": "Thon",
+        "caloriesperunits": {
+          "grammes": 184,
+          "portion": 276
+        },
+        "chosenUnit": "portion",
+        "quantity": 1
+      },
+      {
+        "typeFood": "céréales",
+        "nameFood": "Quinoa",
+        "caloriesperunits": {
+          "grammes": 120,
+          "tasse cuite": 222
+        },
+        "chosenUnit": "tasse cuite",
+        "quantity": 1
+      }
+    ],
+    "totaleCalories": 600,
+    "date": "2023-10-12"
+  }
+]
