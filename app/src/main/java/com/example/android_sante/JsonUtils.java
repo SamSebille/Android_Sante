@@ -93,11 +93,12 @@ public class JsonUtils {
         return new Gson().fromJson(jsonString, listType);
     }
 
-    public static Lunch getLunch(Context context, int id) {
+    public static List<Lunch> getLunch(Context context, int id) {
         List<Lunch> Lunches = getAllLunch(context);
         for (Lunch lunch : Lunches) {
             if (lunch.getId() == id) {
-                return lunch;
+                //return lunch;
+                return null;
             }
         }
         return null;

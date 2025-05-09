@@ -2,7 +2,12 @@ package com.example.android_sante;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -32,14 +37,16 @@ public class LunchFragment extends Fragment {
 
     private String id = "";
 
-    private Lunch lunch;
+    private List<Lunch> lunch;
 
+    private List<Food> allFoods = new ArrayList<Food>();
     private List<Food> meat = new ArrayList<Food>();
     private List<Food> fish = new ArrayList<Food>();
     private List<Food> vegetable = new ArrayList<Food>();
     private List<Food> cereal = new ArrayList<Food>();
 
     private ArrayAdapter<String> adapterFood;
+
     public LunchFragment() {
         // Required empty public constructor
     }
@@ -89,10 +96,10 @@ public class LunchFragment extends Fragment {
         if (!id.isBlank())
             this.lunch = JsonUtils.getLunch(getContext(), Integer.parseInt(id));
 
-        List<Food> foods = JsonUtils.getFood(getContext());
+        allFoods = JsonUtils.getFood(getContext());
 
-        if (foods != null) {
-            foods.forEach(food  -> {
+        if (!allFoods.isEmpty()) {
+            allFoods.forEach(food  -> {
                 if (food.getTypeFood().equals("meat")) {
                     meat.add(food);
                 } else if (food.getTypeFood().equals("fish")) {
@@ -117,6 +124,47 @@ public class LunchFragment extends Fragment {
         binding.btnFish.setOnClickListener(v -> selectedButtonGraph(binding.btnFish));
         binding.btnvegetables.setOnClickListener(v -> selectedButtonGraph(binding.btnvegetables));
         binding.btnCereales.setOnClickListener(v -> selectedButtonGraph(binding.btnCereales));
+        binding.autoFood.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // Ne rien faire
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Ne rien faire
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                updateUnitDropDown(s.toString());
+            }
+        });
+//        new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                updateUnitDropDown();
+//                Toast.makeText(LunchFragment.this.getContext(), "Auto food selected", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                // Ne rien faire
+//            }
+//        });
+    }
+
+    private void updateUnitDropDown(String text) {
+        for (int i = 0; i < allFoods.size(); i++) {
+            if (allFoods.get(i).getNameFood().equals(text)) {
+                AutoCompleteTextView autoCompleteTextView = binding.autoUnit;
+                List<String> units = new ArrayList<>(allFoods.get(i).getCaloriesperunits().keySet());
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_dropdown_item_1line, units);
+                autoCompleteTextView.setAdapter(adapter);
+                autoCompleteTextView.setText("");
+                break;
+            }
+        }
     }
 
     private void selectedButtonGraph(MaterialButton selectedButton) {
@@ -153,8 +201,10 @@ public class LunchFragment extends Fragment {
         for (Food food : foods) {
             foodNames.add(food.getNameFood());
         }
-        binding.autoFood.setText(null, false);
+        AutoCompleteTextView autoCompleteTextView = binding.autoFood;
+        autoCompleteTextView.setText(null, false);
         adapterFood = new ArrayAdapter<>(getContext(), android.R.layout.simple_dropdown_item_1line, foodNames);
-        binding.autoFood.setAdapter(adapterFood);
+        autoCompleteTextView.setAdapter(adapterFood);
+
     }
 }
