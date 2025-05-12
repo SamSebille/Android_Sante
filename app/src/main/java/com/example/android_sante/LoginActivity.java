@@ -47,41 +47,114 @@ public class LoginActivity extends AppCompatActivity {
         super.onResume();
 
         binding.loginButton.setOnClickListener(view -> {
-            String id = "";
-            if (binding.editTextEmail.getText() == null || binding.editTextEmail.getText().toString().isEmpty()) {
+
+            if (isLogin) {
+                String id = "";
+                if (binding.editTextEmail.getText() == null || binding.editTextEmail.getText().toString().isEmpty()) {
+                    binding.editTextEmail.setError("Please enter your email");
+                    return;
+                }
+                if (binding.editTextPassword.getText() == null || binding.editTextPassword.getText().toString().isEmpty()) {
+                    binding.editTextPassword.setError("Please enter your password");
+                    return;
+                }
+
+                String username = binding.editTextEmail.getText().toString();
+                String password = binding.editTextPassword.getText().toString();
+
+                List<Credential> userCredentials = JsonUtils.getUserCredentials(this);
+                boolean authenticated = false;
+
+                for (Credential credentials : userCredentials) {
+                    if (username.equals(credentials.getUsername()) && password.equals(credentials.getPassword())) {
+                        id = String.valueOf(credentials.getId());
+                        authenticated = true;
+                        break;
+                    }
+                }
+
+                if (authenticated) {
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra("ID", id);
+                    startActivity(intent);
+                } else {
+                    new AlertDialog.Builder(LoginActivity.this)
+                            .setTitle("Erreur de connexion")
+                            .setMessage("Email ou mot de passe invalide")
+                            .setPositiveButton("OK", null)
+                            .show();
+                }
+            }else {
+                String username = binding.editTextEmail.getText().toString();
+                String password = binding.editTextPassword.getText().toString();
+                String date = binding.editTextDateOfBirth.getText().toString();
+                String firstName = binding.editTextFirstName.getText().toString();
+                String lastName = binding.editTextLastName.getText().toString();
+                if (username.isEmpty() || !username.contains("@")) {
+                    binding.editTextEmail.setError("Please enter your email");
+                    return;
+                }
+                if (password.isEmpty()) {
+                    binding.editTextPassword.setError("Please enter your password");
+                    return;
+                }
+                if (date.isEmpty() ) {
+                    binding.editTextDateOfBirth.setError("Please enter a correct date of birth");
+                    return;
+                }
+                if (firstName.isEmpty()) {
+                    binding.editTextFirstName.setError("Please enter your first name");
+                    return;
+                }
+                if (lastName.isEmpty()) {
+                    binding.editTextLastName.setError("Please enter your last name");
+                    return;
+                }
+
+                List<Credential> userCredentials = JsonUtils.getUserCredentials(this);
+
+                Credential c = new Credential(Integer.toString(userCredentials.size()+1) , firstName, lastName, username, password, date);
+                userCredentials.add(c);
+                // Enregistrer les informations d'inscription
+                JsonUtils.rewriteJsonFileInInternalStorage(this, "credentials.json", userCredentials);
+            }
+
+
+        });
+
+        binding.registerButton.setOnClickListener(view -> {
+            String username = binding.editTextEmail.getText().toString();
+            String password = binding.editTextPassword.getText().toString();
+            String date = binding.editTextDateOfBirth.getText().toString();
+            String firstName = binding.editTextFirstName.getText().toString();
+            String lastName = binding.editTextLastName.getText().toString();
+            if (username.isEmpty() || !username.contains("@")) {
                 binding.editTextEmail.setError("Please enter your email");
                 return;
             }
-            if (binding.editTextPassword.getText() == null || binding.editTextPassword.getText().toString().isEmpty()) {
+            if (password.isEmpty()) {
                 binding.editTextPassword.setError("Please enter your password");
                 return;
             }
-
-            String username = binding.editTextEmail.getText().toString();
-            String password = binding.editTextPassword.getText().toString();
+            if (date.isEmpty() ) {
+                binding.editTextDateOfBirth.setError("Please enter a correct date of birth");
+                return;
+            }
+            if (firstName.isEmpty()) {
+                binding.editTextFirstName.setError("Please enter your first name");
+                return;
+            }
+            if (lastName.isEmpty()) {
+                binding.editTextLastName.setError("Please enter your last name");
+                return;
+            }
 
             List<Credential> userCredentials = JsonUtils.getUserCredentials(this);
-            boolean authenticated = false;
 
-            for (Credential credentials : userCredentials) {
-                if (username.equals(credentials.getUsername()) && password.equals(credentials.getPassword())) {
-                    id = String.valueOf(credentials.getId());
-                    authenticated = true;
-                    break;
-                }
-            }
-
-            if (authenticated) {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra("ID", id);
-                startActivity(intent);
-            } else {
-                new AlertDialog.Builder(LoginActivity.this)
-                        .setTitle("Erreur de connexion")
-                        .setMessage("Email ou mot de passe invalide")
-                        .setPositiveButton("OK", null)
-                        .show();
-            }
+            Credential c = new Credential(Integer.toString(userCredentials.size()+1) , firstName, lastName, username, password, date);
+            userCredentials.add(c);
+            // Enregistrer les informations d'inscription
+            JsonUtils.rewriteJsonFileInInternalStorage(this, "credentials.json", userCredentials);
         });
     }
 }
