@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
         JsonUtils.copyRawJsonToInternalStorage(this, R.raw.databody, "databody.json");
         JsonUtils.copyRawJsonToInternalStorage(this, R.raw.food, "food.json");
         JsonUtils.copyRawJsonToInternalStorage(this, R.raw.lunch, "lunch.json");
+        JsonUtils.copyRawJsonToInternalStorage(this, R.raw.activity, "activity.json");
 
         binding.tvToggle.setOnClickListener(view -> {
             isLogin = !isLogin;

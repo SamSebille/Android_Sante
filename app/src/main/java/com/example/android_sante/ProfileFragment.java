@@ -62,7 +62,6 @@ public class ProfileFragment extends Fragment {
 
         FragmentProfileBinding binding = FragmentProfileBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-        // Inflate the layout for this fragment
         return binding.getRoot();
     }
 }

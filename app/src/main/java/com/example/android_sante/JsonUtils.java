@@ -2,12 +2,16 @@ package com.example.android_sante;
 import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import android.util.Log;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JsonUtils {
+
+    private static final String TAG = "JsonUtils";
 
     public static List<Credential> getUserCredentials(Context context) {
         String jsonString = readJsonFromFile(context, "credentials.json");
@@ -51,6 +55,42 @@ public class JsonUtils {
             }
         }
         return null;
+    }
+
+    public static List<Activity> getAllActivityEntries(Context context, String filename) {
+        String jsonString = readJsonFromFile(context, filename);
+        if (jsonString == null || jsonString.isEmpty()) {
+            return new ArrayList<>();
+        }
+        Type listType = new TypeToken<List<Activity>>() {}.getType();
+        List<Activity> entries = new Gson().fromJson(jsonString, listType);
+        return entries != null ? entries : new ArrayList<>();
+    }
+
+    public static List<Activity> getActivityEntriesByUserId(Context context, String userId, String filename) {
+        List<Activity> allEntries = getAllActivityEntries(context, filename);
+        List<Activity> userEntries = new ArrayList<>();
+        if (userId == null || userId.isEmpty()) {
+            Log.w(TAG, "getActivityEntriesByUserId appelé avec un userId nul ou vide.");
+            return userEntries;
+        }
+        for (Activity entry : allEntries) {
+            if (userId.equals(entry.getUserId())) {
+                userEntries.add(entry);
+            }
+        }
+        return userEntries;
+    }
+
+    public static void addActivityEntry(Context context, Activity newEntry, String filename) {
+        if (newEntry == null) {
+            Log.e(TAG, "Tentative d'ajout d'une ActivityEntry nulle.");
+            return;
+        }
+        List<Activity> existingEntries = getAllActivityEntries(context, filename);
+        existingEntries.add(newEntry);
+        rewriteJsonFileInInternalStorage(context, filename, existingEntries);
+        Log.d(TAG, "ActivityEntry ajoutée au fichier: " + filename);
     }
 
     public static void writeJsonToFile(Context context, String json, String filename) {
