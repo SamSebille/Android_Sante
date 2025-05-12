@@ -19,6 +19,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // Copier les fichiers JSON des ressources brutes vers le stockage interne
+        JsonUtils.copyRawJsonToInternalStorage(this, R.raw.crediential, "credentials.json");
+        JsonUtils.copyRawJsonToInternalStorage(this, R.raw.databody, "databody.json");
+        JsonUtils.copyRawJsonToInternalStorage(this, R.raw.food, "food.json");
+        JsonUtils.copyRawJsonToInternalStorage(this, R.raw.lunch, "lunch.json");
     }
 
     @Override

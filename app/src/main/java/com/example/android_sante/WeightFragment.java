@@ -16,10 +16,12 @@ import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.*;
 import com.google.android.material.button.MaterialButton;
+import org.jetbrains.annotations.NotNull;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
-import static android.content.Intent.getIntent;
+import java.util.Date;
+import java.util.List;
 
 public class WeightFragment extends Fragment {
 
@@ -75,9 +77,8 @@ public class WeightFragment extends Fragment {
             if (dataBody.getWeightGoal() != 0f ) {
                 this.reachableWeight = dataBody.getWeightGoal();
                 this.updateProgressWeight();
-                this.displayObjectiveWeight();            
+                this.displayObjectiveWeight();
             }
-            
         }
     }
 
@@ -145,6 +146,21 @@ public class WeightFragment extends Fragment {
                     binding.editObjectiveTextWeight.getText().clear();
                     binding.addObjectiveWeightBloc.setVisibility(View.GONE);
 
+                    // Mettre à jour le fichier JSON avec le nouvel objectif de poids
+                    if (dataBody != null) {
+                        dataBody.setWeightGoal((float) reachableWeight);
+                        List<DataBody> list =  JsonUtils.getAllDataBody(getContext(), "databody.json");
+
+                        for (DataBody dataBody: list) {
+                            if (dataBody.getId() == Integer.parseInt(id)) {
+                                dataBody.setWeightGoal(this.dataBody.getWeightGoal());
+                                System.out.println("LOG : " + dataBody.toString());
+                                break;
+                            }
+                        }
+                        JsonUtils.rewriteJsonFileInInternalStorage(getContext(), "databody.json", list);
+                    }
+
                     Toast.makeText(getContext(), "Objectif de " + reachableWeight + " kg enregistré !",
                             Toast.LENGTH_SHORT).show();
                 } else {
@@ -167,6 +183,25 @@ public class WeightFragment extends Fragment {
                     updateProgressWeight();
                     updateGraphWeight(currentWeight);
                     binding.editTextWeight.getText().clear();
+
+                    // Mettre à jour le fichier JSON avec le nouveau poids actuel
+                    if (dataBody != null) {
+
+                        List<DataBody> list =  JsonUtils.getAllDataBody(getContext(), "databody.json");
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+                        String currentDate = sdf.format(new Date());
+                        dataBody.addWeight(currentDate, (float) currentWeight);
+
+                        for (DataBody dataBody: list) {
+                            if (dataBody.getId() == Integer.parseInt(id)) {
+                                dataBody.addWeight(currentDate, (float) currentWeight);
+                                System.out.println("LOG : " + dataBody.toString());
+                                break;
+                            }
+                        }
+                        System.out.println("LOG : " + list.toString());
+                        JsonUtils.rewriteJsonFileInInternalStorage(getContext(), "databody.json", list);
+                    }
 
                     Toast.makeText(getContext(), currentWeight + " kg a été enregistré pour cette semaine !",
                             Toast.LENGTH_SHORT).show();
@@ -251,7 +286,6 @@ public class WeightFragment extends Fragment {
         binding.barChart.setData(data);
         binding.barChart.notifyDataSetChanged();
         binding.barChart.invalidate();
-
     }
 
     private void displayObjectiveWeight() {
