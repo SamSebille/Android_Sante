@@ -8,7 +8,6 @@
     <ScrollView android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-        <!-- Un seul conteneur parent pour tous les éléments dans ScrollView -->
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -45,7 +44,7 @@
                             android:id="@+id/actualObjectiveWeightText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Vous avez saisi l'objectif de :"
+                            android:text="@string/enterObjective"
                             android:textSize="15sp"
                             android:fontFamily="@font/poppins"/>
 
@@ -74,7 +73,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="VOTRE ÉVOLUTION"
+                        android:text="@string/yourEvolution"
                         android:textSize="15sp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="-10dp"/>
@@ -160,7 +159,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="SAISIE POIDS"
+                        android:text="@string/enterWeight"
                         android:textSize="15sp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="-10dp"/>
@@ -185,7 +184,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:hint="Poids (kg)">
+                                android:hint="@string/weight">
 
                             <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/editTextWeight"
@@ -199,7 +198,7 @@
                                 android:id="@+id/btnSaveWeight"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Sauvegarder"
+                                android:text="@string/save"
                                 android:layout_marginStart="8dp"
                                 style="@style/MyButton"/>
                     </LinearLayout>
@@ -220,7 +219,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="VOTRE PROGRESSION"
+                        android:text="@string/yourProgression"
                         android:textSize="15sp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="-10dp"/>
@@ -241,7 +240,6 @@
                             android:gravity="center_vertical"
                             android:background="@color/white">
 
-                        <!-- FrameLayout pour superposer le ProgressBar et le TextView -->
                         <FrameLayout
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
@@ -262,7 +260,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:textSize="14sp"
-                                    android:text="--"
+                                    android:text="@string/waitWeight"
                                     android:fontFamily="@font/poppins"/>
                         </FrameLayout>
 
@@ -272,7 +270,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:textSize="16sp"
-                                android:text="Progression par rapport à votre objectif !"
+                                android:text="@string/progressionText"
                                 android:fontFamily="@font/poppins"/>
 
                     </LinearLayout>
@@ -283,7 +281,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Un objectif ?"
+                        android:text="@string/anObjective"
                         style="@style/MyButton"/>
 
                 <!-- Cinquième bloc - VOTRE OBJECTIF -->
@@ -300,7 +298,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
-                            android:text="VOTRE OBJECTIF"
+                            android:text="@string/yourObjective"
                             android:textSize="15sp"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginBottom="-10dp"/>
@@ -325,7 +323,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:hint="Poids (kg)">
+                                    android:hint="@string/weight">
 
                                 <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/editObjectiveTextWeight"
@@ -339,7 +337,7 @@
                                     android:id="@+id/btnSaveObjectiveWeight"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Sauvegarder"
+                                    android:text="@string/save"
                                     android:layout_marginStart="8dp"
                                     style="@style/MyButton"/>
                         </LinearLayout>

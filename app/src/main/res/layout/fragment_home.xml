@@ -9,7 +9,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Page d'accueil"
+            android:text="@string/homePage"
             android:textSize="20sp"
             android:textStyle="bold"/>
 

@@ -7,9 +7,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.android_sante.databinding.ActivityLoginBinding;
-
-// ... autres imports ...
-
 import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
@@ -31,14 +28,14 @@ public class LoginActivity extends AppCompatActivity {
         binding.tvToggle.setOnClickListener(view -> {
             isLogin = !isLogin;
             if (isLogin) {
-                binding.tvTitle.setText("CONNEXION");
-                binding.loginButton.setText("Se connecter");
-                binding.tvToggle.setText("Créer un compte");
+                binding.tvTitle.setText(R.string.connexion);
+                binding.loginButton.setText(R.string.connexionAccount);
+                binding.tvToggle.setText(R.string.createAccount);
                 binding.registerFields.setVisibility(View.GONE);
             } else {
-                binding.tvTitle.setText("INSCRIPTION");
-                binding.loginButton.setText("S'inscrire");
-                binding.tvToggle.setText("Se connecter");
+                binding.tvTitle.setText(R.string.register);
+                binding.loginButton.setText(R.string.registerAccount);
+                binding.tvToggle.setText(R.string.connexionAccount);
                 binding.registerFields.setVisibility(View.VISIBLE);
             }
         });

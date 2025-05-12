@@ -9,7 +9,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <!-- Un seul conteneur parent pour tous les éléments dans ScrollView -->
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -29,7 +28,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="CHOIX DU REPAS"
+                        android:text="@string/choiceLunch"
                         android:textSize="15sp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="-10dp" />
@@ -106,7 +105,7 @@
                         <com.google.android.material.textfield.TextInputLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="Choisissez un produit"
+                                android:hint="@string/choiceProduct"
                                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                                 android:id="@+id/dropDownFood">
 
@@ -126,14 +125,14 @@
                             <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Unité :"
+                                    android:text="@string/unity"
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginEnd="8dp" />
 
                             <com.google.android.material.textfield.TextInputLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:hint="Unité"
+                                    android:hint="@string/unity"
                                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                                     android:id="@+id/dropDownUnit">
 
@@ -154,7 +153,7 @@
                             <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Quantité :"
+                                    android:text="@string/quantity"
                                     android:layout_gravity="center_vertical"
                                     android:layout_marginEnd="8dp" />
 
@@ -162,7 +161,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:hint="Quantité">
+                                    android:hint="@string/quantity">
 
                                 <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/editTextQuantity"

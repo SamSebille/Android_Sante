@@ -20,12 +20,12 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:src="@drawable/logo"
-                android:contentDescription="Logo de l'application" />
+                android:contentDescription="@string/LogoApplication"/>
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CoreGoal"
+                android:text="@string/app_name"
                 android:fontFamily="@font/poppins_bold"
                 android:textSize="30sp"
                 android:layout_marginTop="16dp"
@@ -65,7 +65,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_bold"
-                            android:text="CONNEXION"
+                            android:text="@string/connexion"
                             android:textSize="24sp"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginBottom="10dp"/>
@@ -83,7 +83,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="16dp"
-                                android:hint="Prénom"
+                                android:hint="@string/name"
                                 app:startIconDrawable="@drawable/person_24">
 
                             <com.google.android.material.textfield.TextInputEditText
@@ -98,7 +98,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="16dp"
-                                android:hint="Nom"
+                                android:hint="@string/surname"
                                 app:startIconDrawable="@drawable/person_24">
 
                             <com.google.android.material.textfield.TextInputEditText
@@ -113,7 +113,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="16dp"
-                                android:hint="Date de naissance">
+                                android:hint="@string/dateOfBirth">
 
                             <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/editTextDateOfBirth"
@@ -128,7 +128,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="16dp"
-                            android:hint="Email"
+                            android:hint="@string/email"
                             app:startIconDrawable="@drawable/mail_24">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -143,7 +143,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="24dp"
-                            android:hint="Mot de passe"
+                            android:hint="@string/password"
                             app:startIconDrawable="@drawable/lock_24"
                             app:endIconMode="password_toggle">
 
@@ -159,7 +159,7 @@
                             android:id="@+id/loginButton"
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
-                            android:text="Se connecter"
+                            android:text="@string/connexionAccount"
                             android:textAllCaps="false"
                             android:fontFamily="@font/poppins"
                             style="@style/MyButton"/>
@@ -169,7 +169,7 @@
                             android:id="@+id/registerButton"
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
-                            android:text="S'inscrire"
+                            android:text="@string/registerAccount"
                             android:textAllCaps="false"
                             android:fontFamily="@font/poppins"
                             style="@style/MyButton"
@@ -180,7 +180,7 @@
                             android:id="@+id/tvToggle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Créer un compte"
+                            android:text="@string/createAccount"
                             android:textColor="#3F51B5"
                             android:layout_gravity="center_horizontal"
                             android:fontFamily="@font/poppins"

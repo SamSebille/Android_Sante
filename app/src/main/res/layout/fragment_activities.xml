@@ -14,12 +14,14 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:textAlignment="center"
-            android:text="Ajouter une activité"
+            android:text="@string/addActivity"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/Primary_blue"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintVertical_bias="0.009"
             />
     <androidx.core.widget.NestedScrollView
@@ -30,7 +32,8 @@
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
@@ -39,7 +42,6 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-            <!-- Filtres populaires/toutes -->
             <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chipGroupFilter"
                     android:layout_width="wrap_content"
@@ -53,7 +55,7 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="+ populaires"
+                        android:text="@string/mostPopular"
                         android:checked="true"/>
 
                 <com.google.android.material.chip.Chip
@@ -61,10 +63,9 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Toutes"/>
+                        android:text="@string/all"/>
             </com.google.android.material.chip.ChipGroup>
 
-            <!-- Grille des activités -->
             <GridLayout
                     android:id="@+id/gridActivities"
                     android:layout_width="wrap_content"
@@ -74,11 +75,10 @@
                     android:columnCount="3"
                     android:useDefaultMargins="true">
 
-                <!-- Ligne 1 -->
                 <ImageButton
                         android:id="@+id/btnActivityBike"
                         android:src="@drawable/directions_bike_24"
-                        android:contentDescription="Vélo"
+                        android:contentDescription="@string/cycling"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/activity_button_selector"
@@ -92,7 +92,7 @@
                 <ImageButton
                         android:id="@+id/btnActivitySwim"
                         android:src="@drawable/pool"
-                        android:contentDescription="Natation"
+                        android:contentDescription="@string/swimming"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/activity_button_selector"
@@ -106,7 +106,7 @@
                 <ImageButton
                         android:id="@+id/btnActivityWeights"
                         android:src="@drawable/weight"
-                        android:contentDescription="Musculation"
+                        android:contentDescription="@string/fitness"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/activity_button_selector"
@@ -117,11 +117,10 @@
                         android:tag="popular"
                 />
 
-                <!-- Ligne 2 -->
                 <ImageButton
                         android:id="@+id/btnActivityRun"
                         android:src="@drawable/directions_run_24"
-                        android:contentDescription="Course"
+                        android:contentDescription="@string/running"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/activity_button_selector"
@@ -135,7 +134,7 @@
                 <ImageButton
                         android:id="@+id/btnActivityWalk"
                         android:src="@drawable/directions_walk_24"
-                        android:contentDescription="Marche"
+                        android:contentDescription="@string/walking"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/activity_button_selector"
@@ -149,7 +148,7 @@
                 <ImageButton
                         android:id="@+id/btnActivityMore"
                         android:src="@drawable/martial_arts"
-                        android:contentDescription="Plus"
+                        android:contentDescription="@string/taekwondo"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/activity_button_selector"
@@ -159,11 +158,10 @@
                         android:tag="popular"
                 />
 
-                <!-- Ligne 3 -->
                 <ImageButton
                     android:id="@+id/ski"
                     android:src="@drawable/ski"
-                    android:contentDescription="Ski"
+                    android:contentDescription="@string/ski"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:background="@drawable/activity_button_selector"
@@ -175,7 +173,7 @@
                 <ImageButton
                     android:id="@+id/hiking"
                     android:src="@drawable/hiking"
-                    android:contentDescription="Hiking"
+                    android:contentDescription="@string/hiking"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:background="@drawable/activity_button_selector"
@@ -187,7 +185,7 @@
                 <ImageButton
                     android:id="@+id/gymnastics"
                     android:src="@drawable/gymnastics"
-                    android:contentDescription="Gymnastics"
+                    android:contentDescription="@string/gymnastics"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:background="@drawable/activity_button_selector"
@@ -196,11 +194,10 @@
                     android:scaleType="fitCenter"
                 />
 
-                <!-- Ligne 4: Nouvelles activités -->
                 <ImageButton
                         android:id="@+id/btnActivityHandball"
                         android:src="@drawable/handball"
-                        android:contentDescription="Handball"
+                        android:contentDescription="@string/handball"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/activity_button_selector"
@@ -212,7 +209,7 @@
                 <ImageButton
                         android:id="@+id/btnActivityKayaking"
                         android:src="@drawable/kayaking"
-                        android:contentDescription="Kayaking"
+                        android:contentDescription="@string/kayaking"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/activity_button_selector"
@@ -224,7 +221,7 @@
                 <ImageButton
                         android:id="@+id/btnActivityScubaDiving"
                         android:src="@drawable/scuba_diving"
-                        android:contentDescription="Scuba Diving"
+                        android:contentDescription="@string/scubaDiving"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/activity_button_selector"
@@ -233,11 +230,10 @@
                         android:scaleType="fitCenter"
                 />
 
-                <!-- Ligne 5: Nouvelles activités (suite) -->
                 <ImageButton
                         android:id="@+id/btnActivitySkateboarding"
                         android:src="@drawable/skateboarding"
-                        android:contentDescription="Skateboarding"
+                        android:contentDescription="@string/skateboarding"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/activity_button_selector"
@@ -249,7 +245,7 @@
                 <ImageButton
                         android:id="@+id/btnActivitySurfing"
                         android:src="@drawable/surfing"
-                        android:contentDescription="Surfing"
+                        android:contentDescription="@string/surfing"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/activity_button_selector"
@@ -261,7 +257,7 @@
                 <ImageButton
                         android:id="@+id/btnActivityBall"
                         android:src="@drawable/ball"
-                        android:contentDescription="BallSports"
+                        android:contentDescription="@string/football"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/activity_button_selector"
@@ -272,14 +268,13 @@
 
             </GridLayout>
 
-            <!-- Sélection de la durée -->
             <TextView
                     android:id="@+id/tvDurationLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="32dp"
-                    android:text="Comment de temps a duré votre activité ?"
+                    android:text="@string/durationActivity"
                     android:textColor="@color/Secondary_blue"/>
 
             <LinearLayout
@@ -296,7 +291,7 @@
                         android:layout_height="50dp"
                         android:layout_width="50dp"
                         android:background="@color/Secondary_blue"
-                        android:contentDescription="Moins"
+                        android:contentDescription="@string/less"
                 />
 
                 <TextView
@@ -305,7 +300,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginEnd="24dp"
-                        android:text="0:30"
+                        android:text="@string/time"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
                         android:textColor="@color/Primary_blue"/>
 
@@ -315,7 +310,7 @@
                         android:layout_height="50dp"
                         android:layout_width="50dp"
                         android:background="@color/Secondary_blue"
-                        android:contentDescription="Plus"
+                        android:contentDescription="@string/plus"
                 />
 
             </LinearLayout>
@@ -326,12 +321,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="4dp"
-                    android:text="Heures"
+                    android:text="@string/hour"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                     android:textColor="@color/Secondary_blue"/>
 
-
-            <!-- Bouton OK -->
             <Button
                     android:id="@+id/btnOk"
                     android:layout_width="match_parent"
@@ -340,7 +333,7 @@
                     android:layout_marginBottom="16dp"
                     android:paddingTop="12dp"
                     android:paddingBottom="12dp"
-                    android:text="OK"
+                    android:text="@string/add"
                     android:backgroundTint="@color/Primary_blue"
                     app:cornerRadius="20dp"/>
 
