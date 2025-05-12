@@ -7,119 +7,189 @@
               android:background="@android:color/transparent"
               android:gravity="center_horizontal">
 
-            <!-- Logo et titre de l'application -->
-            <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginBottom="40dp"
-                    android:gravity="center_horizontal">
+    <!-- Logo et titre de l'application -->
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="40dp"
+            android:gravity="center_horizontal">
 
-                <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:src="@drawable/logo"
-                        android:contentDescription="Logo de l'application" />
+        <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/logo"
+                android:contentDescription="Logo de l'application" />
 
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="CoreGoal"
-                        android:fontFamily="@font/poppins_bold"
-                        android:textSize="30sp"
-                        android:layout_marginTop="16dp"
-                        android:textColor="#3F51B5" />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CoreGoal"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="30sp"
+                android:layout_marginTop="16dp"
+                android:textColor="#3F51B5" />
 
-            </LinearLayout>
+    </LinearLayout>
 
-            <!-- Bloc de connexion -->
-            <LinearLayout
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="350dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@android:color/transparent">
+    <!-- Bloc de connexion/inscription -->
+    <LinearLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/transparent">
 
-                <com.google.android.material.card.MaterialCardView
+        <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+            <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_margin="16dp"
-                        app:cardCornerRadius="12dp"
-                        app:cardElevation="2dp">
+                        android:orientation="vertical"
+                        android:padding="24dp"
+                        android:background="@color/white">
 
+                    <TextView
+                            android:id="@+id/tvTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="CONNEXION"
+                            android:textSize="24sp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="10dp"/>
+
+                    <!-- Champs pour l'inscription -->
                     <LinearLayout
+                            android:id="@+id/registerFields"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:padding="24dp"
-                            android:background="@color/white">
+                            android:visibility="gone">
 
-                        <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/poppins_bold"
-                                android:text="CONNEXION"
-                                android:textSize="24sp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginBottom="10dp"/>
-
-                        <!-- Champ Email -->
+                        <!-- Champ Prénom -->
                         <com.google.android.material.textfield.TextInputLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="16dp"
-                                android:hint="Email"
-                                app:startIconDrawable="@drawable/mail_24">
+                                android:hint="Prénom"
+                                app:startIconDrawable="@drawable/person_24">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/editTextEmail"
+                                    android:id="@+id/editTextFirstName"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:inputType="textEmailAddress" />
+                                    android:inputType="textPersonName" />
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <!-- Champ Mot de passe -->
+                        <!-- Champ Nom -->
                         <com.google.android.material.textfield.TextInputLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="24dp"
-                                android:hint="Mot de passe"
-                                app:startIconDrawable="@drawable/lock_24"
-                                app:endIconMode="password_toggle">
+                                android:layout_marginBottom="16dp"
+                                android:hint="Nom"
+                                app:startIconDrawable="@drawable/person_24">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/editTextPassword"
+                                    android:id="@+id/editTextLastName"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:inputType="textPassword" />
+                                    android:inputType="textPersonName" />
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <!-- Bouton de connexion -->
-                        <com.google.android.material.button.MaterialButton
-                                android:id="@+id/loginButton"
+                        <!-- Champ Date de naissance -->
+                        <com.google.android.material.textfield.TextInputLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="56dp"
-                                android:text="Se connecter"
-                                android:textAllCaps="false"
-                                android:fontFamily="@font/poppins"
-                                style="@style/MyButton"/>
-
-                        <!-- Lien mot de passe oublié -->
-                        <TextView
-                                android:id="@+id/tvForgotPassword"
-                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Mot de passe oublié ?"
-                                android:textColor="#3F51B5"
-                                android:layout_gravity="center_horizontal"
-                                android:fontFamily="@font/poppins"
-                                android:layout_marginTop="16dp" />
+                                android:layout_marginBottom="16dp"
+                                android:hint="Date de naissance">
 
+                            <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/editTextDateOfBirth"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="date" />
+                        </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
 
-            </LinearLayout>
+                    <!-- Champ Email -->
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:hint="Email"
+                            app:startIconDrawable="@drawable/mail_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editTextEmail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textEmailAddress" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Champ Mot de passe -->
+                    <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="24dp"
+                            android:hint="Mot de passe"
+                            app:startIconDrawable="@drawable/lock_24"
+                            app:endIconMode="password_toggle">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editTextPassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textPassword" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Bouton de connexion -->
+                    <com.google.android.material.button.MaterialButton
+                            android:id="@+id/loginButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:text="Se connecter"
+                            android:textAllCaps="false"
+                            android:fontFamily="@font/poppins"
+                            style="@style/MyButton"/>
+
+                    <!-- Bouton d'inscription -->
+                    <com.google.android.material.button.MaterialButton
+                            android:id="@+id/registerButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:text="S'inscrire"
+                            android:textAllCaps="false"
+                            android:fontFamily="@font/poppins"
+                            style="@style/MyButton"
+                            android:visibility="gone"/>
+
+                    <!-- Lien pour basculer entre connexion et inscription -->
+                    <TextView
+                            android:id="@+id/tvToggle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Créer un compte"
+                            android:textColor="#3F51B5"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/poppins"
+                            android:layout_marginTop="16dp" />
+
+                </LinearLayout>
+            </ScrollView>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
 
 </LinearLayout>

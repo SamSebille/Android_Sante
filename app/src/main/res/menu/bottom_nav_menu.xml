@@ -10,7 +10,7 @@
     <item android:title="@string/weight" android:id="@+id/weight" android:icon="@drawable/monitor_weight_24"
           android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
-    <item android:title="@string/food" android:id="@+id/food" android:icon="@drawable/flatware_24"
+    <item android:title="@string/dish" android:id="@+id/food" android:icon="@drawable/flatware_24"
           android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
     <item android:title="@string/profile" android:id="@+id/profile" android:icon="@drawable/person_24"

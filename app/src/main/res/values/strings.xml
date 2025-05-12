@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">Android_sante</string>
+    <string name="app_name">CoreGoal</string>
     <string name="home">Accueil</string>
     <string name="activity">Activités</string>
     <string name="weight">Poids</string>
+    <string name="dish">Plats</string>
     <string name="food">Végétaux</string>
     <string name="profile">Profil</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>

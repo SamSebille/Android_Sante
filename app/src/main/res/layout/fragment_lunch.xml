@@ -5,8 +5,9 @@
               android:orientation="vertical"
               android:background="@android:color/transparent">
 
-    <ScrollView android:layout_width="match_parent"
-                android:layout_height="match_parent">
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <!-- Un seul conteneur parent pour tous les éléments dans ScrollView -->
         <LinearLayout
@@ -31,7 +32,7 @@
                         android:text="CHOIX DU REPAS"
                         android:textSize="15sp"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="-10dp"/>
+                        android:layout_marginBottom="-10dp" />
 
                 <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
@@ -66,7 +67,7 @@
                                     android:insetBottom="0dp"
                                     android:layout_marginHorizontal="3dp"
                                     android:layout_marginVertical="3dp"
-                                    style="@style/MyButtonSelected"/>
+                                    style="@style/MyButtonSelected" />
 
                             <com.google.android.material.button.MaterialButton
                                     android:id="@+id/btnFish"
@@ -77,7 +78,7 @@
                                     android:insetBottom="0dp"
                                     android:layout_marginHorizontal="3dp"
                                     android:layout_marginVertical="3dp"
-                                    style="@style/MyButtonUnselected"/>
+                                    style="@style/MyButtonUnselected" />
 
                             <com.google.android.material.button.MaterialButton
                                     android:id="@+id/btnvegetables"
@@ -88,7 +89,7 @@
                                     android:insetBottom="0dp"
                                     android:layout_marginHorizontal="3dp"
                                     android:layout_marginVertical="3dp"
-                                    style="@style/MyButtonUnselected"/>
+                                    style="@style/MyButtonUnselected" />
 
                             <com.google.android.material.button.MaterialButton
                                     android:id="@+id/btnCereales"
@@ -99,7 +100,7 @@
                                     android:insetBottom="0dp"
                                     android:layout_marginHorizontal="3dp"
                                     android:layout_marginVertical="3dp"
-                                    style="@style/MyButtonUnselected"/>
+                                    style="@style/MyButtonUnselected" />
                         </LinearLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -112,24 +113,26 @@
                             <AutoCompleteTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:inputType="none" android:id="@+id/autoFood"/>
+                                    android:inputType="none"
+                                    android:id="@+id/autoFood" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                android:layout_marginTop="16dp">
 
                             <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Unité :"
-                                    android:layout_gravity="center_vertical"/>
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginEnd="8dp" />
 
                             <com.google.android.material.textfield.TextInputLayout
-                                    android:layout_width="100dp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_margin="16dp"
                                     android:hint="Unité"
                                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                                     android:id="@+id/dropDownUnit">
@@ -137,34 +140,38 @@
                                 <AutoCompleteTextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:inputType="none" android:id="@+id/autoUnit"/>
+                                        android:inputType="none"
+                                        android:id="@+id/autoUnit" />
                             </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
 
                         <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                android:layout_marginTop="16dp">
 
                             <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Quantité :"
-                                    android:layout_gravity="center_vertical"/>
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginEnd="8dp" />
 
                             <com.google.android.material.textfield.TextInputLayout
-                                    android:layout_width="0dp"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:hint="Quantité" >
+                                    android:hint="Quantité">
 
                                 <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/editTextQuantity"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:inputType="numberDecimal"
-                                        android:maxLength="5"/>
-                            </com.google.android.material.textfield.TextInputLayout>                        </LinearLayout>
+                                        android:maxLength="5" />
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </LinearLayout>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>

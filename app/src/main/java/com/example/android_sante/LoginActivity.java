@@ -2,6 +2,7 @@ package com.example.android_sante;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.view.View;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
+    private boolean isLogin = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,21 @@ public class LoginActivity extends AppCompatActivity {
         JsonUtils.copyRawJsonToInternalStorage(this, R.raw.databody, "databody.json");
         JsonUtils.copyRawJsonToInternalStorage(this, R.raw.food, "food.json");
         JsonUtils.copyRawJsonToInternalStorage(this, R.raw.lunch, "lunch.json");
+
+        binding.tvToggle.setOnClickListener(view -> {
+            isLogin = !isLogin;
+            if (isLogin) {
+                binding.tvTitle.setText("CONNEXION");
+                binding.loginButton.setText("Se connecter");
+                binding.tvToggle.setText("Créer un compte");
+                binding.registerFields.setVisibility(View.GONE);
+            } else {
+                binding.tvTitle.setText("INSCRIPTION");
+                binding.loginButton.setText("S'inscrire");
+                binding.tvToggle.setText("Se connecter");
+                binding.registerFields.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @Override
