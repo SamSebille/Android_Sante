@@ -196,6 +196,80 @@
                     android:scaleType="fitCenter"
                 />
 
+                <!-- Ligne 4: Nouvelles activités -->
+                <ImageButton
+                        android:id="@+id/btnActivityHandball"
+                        android:src="@drawable/handball"
+                        android:contentDescription="Handball"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/activity_button_selector"
+                        app:tint="@color/Primary_blue"
+                        android:padding="16dp"
+                        android:scaleType="fitCenter"
+                />
+
+                <ImageButton
+                        android:id="@+id/btnActivityKayaking"
+                        android:src="@drawable/kayaking"
+                        android:contentDescription="Kayaking"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/activity_button_selector"
+                        app:tint="@color/Primary_blue"
+                        android:padding="16dp"
+                        android:scaleType="fitCenter"
+                />
+
+                <ImageButton
+                        android:id="@+id/btnActivityScubaDiving"
+                        android:src="@drawable/scuba_diving"
+                        android:contentDescription="Scuba Diving"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/activity_button_selector"
+                        app:tint="@color/Primary_blue"
+                        android:padding="16dp"
+                        android:scaleType="fitCenter"
+                />
+
+                <!-- Ligne 5: Nouvelles activités (suite) -->
+                <ImageButton
+                        android:id="@+id/btnActivitySkateboarding"
+                        android:src="@drawable/skateboarding"
+                        android:contentDescription="Skateboarding"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/activity_button_selector"
+                        app:tint="@color/Primary_blue"
+                        android:padding="16dp"
+                        android:scaleType="fitCenter"
+                />
+
+                <ImageButton
+                        android:id="@+id/btnActivitySurfing"
+                        android:src="@drawable/surfing"
+                        android:contentDescription="Surfing"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/activity_button_selector"
+                        app:tint="@color/Primary_blue"
+                        android:padding="16dp"
+                        android:scaleType="fitCenter"
+                />
+
+                <ImageButton
+                        android:id="@+id/btnActivityBall"
+                        android:src="@drawable/ball"
+                        android:contentDescription="BallSports"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/activity_button_selector"
+                        app:tint="@color/Primary_blue"
+                        android:padding="16dp"
+                        android:scaleType="fitCenter"
+                />
+
             </GridLayout>
 
             <!-- Sélection de la durée -->

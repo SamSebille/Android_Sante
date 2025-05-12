@@ -6,35 +6,22 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
+// Supprimez cette ligne si ContextCompat n'est pas utilisé, sinon assurez-vous de l'importation.
+// import androidx.core.content.ContextCompat;
 
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.ChipGroup;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ActivitiesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ActivitiesFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -42,15 +29,6 @@ public class ActivitiesFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ActivitiesFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static ActivitiesFragment newInstance(String param1, String param2) {
         ActivitiesFragment fragment = new ActivitiesFragment();
         Bundle args = new Bundle();
@@ -76,17 +54,15 @@ public class ActivitiesFragment extends Fragment {
     private ImageButton selectedActivityButton = null;
     private ChipGroup chipGroupFilter;
 
-    private int durationMinutes = 30; // Durée initiale en minutes
-    private final int DURATION_STEP = 15; // Incrément/décrément en minutes
-    private final int MIN_DURATION = 15; // Durée minimale
-    private final int MAX_DURATION = 6 * 60; // Durée maximale (ex: 6 heures)
+    private int durationMinutes = 30;
+    private final int DURATION_STEP = 15;
+    private final int MIN_DURATION = 15;
+    private final int MAX_DURATION = 6 * 60;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // Inflater le layout pour ce fragment
-        View view = inflater.inflate(R.layout.fragment_activities, container, false);
-        return view;
+        return inflater.inflate(R.layout.fragment_activities, container, false);
     }
 
     @Override
@@ -100,20 +76,23 @@ public class ActivitiesFragment extends Fragment {
         gridActivities = view.findViewById(R.id.gridActivities);
         chipGroupFilter = view.findViewById(R.id.chipGroupFilter);
 
-        // Configuration initiale
         updateDurationDisplay();
         setupActivityButtons();
         setupTimeButtons();
         setupOkButton();
-        setupChipGroupListener();
+        setupChipGroupListener(); // Configurer le listener avant de potentiellement changer l'état du ChipGroup
 
-        filterActivities(chipGroupFilter.getCheckedChipId());
-
-        ImageButton initialButton = view.findViewById(R.id.btnActivityWalk);
-        if (initialButton != null && initialButton.getVisibility() == View.VISIBLE) {
-            selectActivityButton(initialButton);
+        // Assurer qu'un filtre est appliqué au démarrage
+        // Si R.id.chipToutes est votre chip par défaut dans le XML avec android:checked="true",
+        // cette partie est redondante car le listener sera appelé.
+        // Sinon, forcez un check ici.
+        if (chipGroupFilter.getCheckedChipId() == View.NO_ID) {
+            // Mettez ici l'ID du chip que vous voulez voir sélectionné par défaut
+            // Par exemple, R.id.chipToutes ou R.id.chipPopulaires
+            chipGroupFilter.check(R.id.chipToutes); // Ceci déclenchera le listener et filterActivities
         } else {
-            selectFirstVisibleActivity();
+            // Si un chip est déjà coché (par ex. via XML), lancer le filtrage initial
+            filterActivities(chipGroupFilter.getCheckedChipId());
         }
     }
 
@@ -130,6 +109,22 @@ public class ActivitiesFragment extends Fragment {
     }
 
     private void selectActivityButton(ImageButton buttonToSelect) {
+        // Si on essaie de sélectionner un bouton non visible ou null, on ne fait rien.
+        // Ou, si on veut désélectionner l'actuel, on pourrait ajouter cette logique ici.
+        if (buttonToSelect == null || buttonToSelect.getVisibility() == View.GONE) {
+            // Optionnel: si on veut désélectionner le bouton actif si on clique sur "rien"
+            // if (selectedActivityButton != null) {
+            //     selectedActivityButton.setSelected(false);
+            //     selectedActivityButton = null;
+            // }
+            return;
+        }
+
+        // Si le bouton à sélectionner est déjà celui qui est sélectionné, ne rien faire.
+        if (selectedActivityButton == buttonToSelect) {
+            return;
+        }
+
         // Désélectionner l'ancien bouton s'il existe
         if (selectedActivityButton != null) {
             selectedActivityButton.setSelected(false);
@@ -137,7 +132,6 @@ public class ActivitiesFragment extends Fragment {
 
         // Sélectionner le nouveau bouton
         buttonToSelect.setSelected(true);
-
         selectedActivityButton = buttonToSelect;
     }
 
@@ -149,12 +143,11 @@ public class ActivitiesFragment extends Fragment {
 
     private void adjustDuration(int change) {
         int newDuration = durationMinutes + change;
-        // Appliquer les limites
         if (newDuration >= MIN_DURATION && newDuration <= MAX_DURATION) {
             durationMinutes = newDuration;
         } else if (newDuration < MIN_DURATION) {
             durationMinutes = MIN_DURATION;
-        } else { // newDuration > MAX_DURATION
+        } else {
             durationMinutes = MAX_DURATION;
         }
         updateDurationDisplay();
@@ -163,8 +156,6 @@ public class ActivitiesFragment extends Fragment {
     private void updateDurationDisplay() {
         long hours = TimeUnit.MINUTES.toHours(durationMinutes);
         long minutes = durationMinutes % 60;
-
-        // Formatte en H:MM
         String formattedTime = String.format(Locale.getDefault(), "%d:%02d", hours, minutes);
         tvDuration.setText(formattedTime);
     }
@@ -172,27 +163,32 @@ public class ActivitiesFragment extends Fragment {
     private void setupOkButton() {
         btnOk.setOnClickListener(v -> {
             if (selectedActivityButton == null) {
-                // Utilisez requireContext() dans un Fragment pour obtenir le Context
                 Toast.makeText(requireContext(), "Veuillez sélectionner une activité", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             String activityType = selectedActivityButton.getContentDescription().toString();
             String durationText = tvDuration.getText().toString();
-
-            // Action à effectuer (ex: enregistrer, afficher un résumé)
             String message = String.format(Locale.getDefault(),
                     "Activité '%s' ajoutée pour %s heures.",
                     activityType, durationText);
+            Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show(); // Afficher le message
         });
     }
 
     private void setupChipGroupListener() {
-
         if (chipGroupFilter == null) return;
-
         chipGroupFilter.setOnCheckedChangeListener((group, checkedId) -> {
-            filterActivities(checkedId);
+            // Si aucun chip n'est sélectionné (possible si clearCheckable est true et l'utilisateur désélectionne)
+            // On peut choisir de forcer une sélection par défaut ou gérer ce cas.
+            if (checkedId == View.NO_ID) {
+                // Par exemple, sélectionner le premier chip par défaut si rien n'est coché.
+                // chipGroupFilter.check(R.id.chipToutes); // Déclenchera à nouveau le listener
+                // Ou simplement ne rien filtrer / afficher un message.
+                // Pour l'instant, on suppose qu'un chip est toujours coché.
+            } else {
+                filterActivities(checkedId);
+            }
         });
     }
 
@@ -201,57 +197,69 @@ public class ActivitiesFragment extends Fragment {
 
         boolean showAll = (checkedId == R.id.chipToutes);
 
-        for (int i = 0; i < gridActivities.getChildCount(); i++){
+        for (int i = 0; i < gridActivities.getChildCount(); i++) {
             View child = gridActivities.getChildAt(i);
             if (child instanceof ImageButton) {
                 ImageButton button = (ImageButton) child;
                 Object tag = button.getTag();
+                boolean shouldBeVisible;
 
                 if (showAll) {
+                    shouldBeVisible = true;
+                } else { // chipPopulaires est coché
+                    shouldBeVisible = (tag != null && "popular".equals(tag.toString()));
+                }
+
+                if (shouldBeVisible) {
                     button.setVisibility(View.VISIBLE);
                 } else {
-                    if (tag != null && "popular".equals(tag.toString())){
-                        button.setVisibility(View.VISIBLE);
-                    } else {
-                        button.setVisibility(View.GONE);
-                    }
+                    button.setVisibility(View.GONE);
+                    // Si ce bouton caché était celui sélectionné, on ne le désélectionne pas encore ici,
+                    // car selectedActivityButton pourrait être ce bouton.
+                    // La désélection du selectedActivityButton caché est gérée après la boucle.
+                    // Cependant, si un bouton est caché et N'EST PAS le selectedActivityButton mais est quand même
+                    // dans un état sélectionné (ce qui ne devrait pas arriver avec une logique correcte),
+                    // on pourrait le forcer ici : if (button.isSelected()) button.setSelected(false);
                 }
             }
         }
 
-        if (selectedActivityButton != null && selectedActivityButton.getVisibility() == View.GONE){
-            selectedActivityButton.setBackgroundResource(R.drawable.activity_button_selector);
-
-            selectedActivityButton.setActivated(false);
-
+        // Après avoir mis à jour la visibilité de tous les boutons :
+        if (selectedActivityButton != null && selectedActivityButton.getVisibility() == View.GONE) {
+            // Le bouton précédemment sélectionné est maintenant caché.
+            // Il faut le désélectionner visuellement et logiquement.
+            selectedActivityButton.setSelected(false); // <- CORRECTION IMPORTANTE
             selectedActivityButton = null;
+            selectFirstVisibleActivity(); // Sélectionner un nouveau bouton parmi les visibles
+        } else if (selectedActivityButton == null) {
+            // Aucun bouton n'est actuellement sélectionné (soit au démarrage, soit après la désélection ci-dessus)
             selectFirstVisibleActivity();
         }
+        // Si selectedActivityButton n'est pas null et est visible, il reste sélectionné, rien à faire.
     }
 
     private void selectFirstVisibleActivity() {
         if (gridActivities == null) return;
+        ImageButton firstVisibleButton = null;
         for (int i = 0; i < gridActivities.getChildCount(); i++) {
             View child = gridActivities.getChildAt(i);
             if (child instanceof ImageButton && child.getVisibility() == View.VISIBLE) {
-                selectActivityButton((ImageButton) child);
-                break;
+                firstVisibleButton = (ImageButton) child;
+                break; // On a trouvé le premier, on peut arrêter
+            }
+        }
+
+        if (firstVisibleButton != null) {
+            selectActivityButton(firstVisibleButton); // Ceci va gérer la désélection de l'ancien s'il y en avait un
+        } else {
+            // Aucun bouton n'est visible. S'il y avait un bouton sélectionné, il faut le désélectionner.
+            if (selectedActivityButton != null) {
+                selectedActivityButton.setSelected(false); // <- CORRECTION IMPORTANTE
+                selectedActivityButton = null;
             }
         }
     }
 
-    private void SelectActivityButton(ImageButton buttonToSelect){
-        if (buttonToSelect.getVisibility() == View.GONE){
-            return;
-        }
-
-        if (selectedActivityButton != null && selectedActivityButton != buttonToSelect){
-            selectedActivityButton.setActivated(false);
-        }
-
-        buttonToSelect.setActivated(true);
-
-        selectedActivityButton = buttonToSelect;
-    }
-
+    // Supprimer cette méthode si elle est un duplicata ou une version erronée de selectActivityButton
+    // private void SelectActivityButton(ImageButton buttonToSelect){ ... }
 }
