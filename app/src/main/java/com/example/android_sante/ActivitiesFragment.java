@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-// Supprimez cette ligne si ContextCompat n'est pas utilisé, sinon assurez-vous de l'importation.
-// import androidx.core.content.ContextCompat;
 
 import com.google.android.material.chip.ChipGroup;
 
@@ -26,7 +24,6 @@ public class ActivitiesFragment extends Fragment {
     private String mParam2;
 
     public ActivitiesFragment() {
-        // Required empty public constructor
     }
 
     public static ActivitiesFragment newInstance(String param1, String param2) {
@@ -80,18 +77,11 @@ public class ActivitiesFragment extends Fragment {
         setupActivityButtons();
         setupTimeButtons();
         setupOkButton();
-        setupChipGroupListener(); // Configurer le listener avant de potentiellement changer l'état du ChipGroup
+        setupChipGroupListener();
 
-        // Assurer qu'un filtre est appliqué au démarrage
-        // Si R.id.chipToutes est votre chip par défaut dans le XML avec android:checked="true",
-        // cette partie est redondante car le listener sera appelé.
-        // Sinon, forcez un check ici.
         if (chipGroupFilter.getCheckedChipId() == View.NO_ID) {
-            // Mettez ici l'ID du chip que vous voulez voir sélectionné par défaut
-            // Par exemple, R.id.chipToutes ou R.id.chipPopulaires
-            chipGroupFilter.check(R.id.chipToutes); // Ceci déclenchera le listener et filterActivities
+            chipGroupFilter.check(R.id.chipToutes);
         } else {
-            // Si un chip est déjà coché (par ex. via XML), lancer le filtrage initial
             filterActivities(chipGroupFilter.getCheckedChipId());
         }
     }
@@ -109,28 +99,18 @@ public class ActivitiesFragment extends Fragment {
     }
 
     private void selectActivityButton(ImageButton buttonToSelect) {
-        // Si on essaie de sélectionner un bouton non visible ou null, on ne fait rien.
-        // Ou, si on veut désélectionner l'actuel, on pourrait ajouter cette logique ici.
         if (buttonToSelect == null || buttonToSelect.getVisibility() == View.GONE) {
-            // Optionnel: si on veut désélectionner le bouton actif si on clique sur "rien"
-            // if (selectedActivityButton != null) {
-            //     selectedActivityButton.setSelected(false);
-            //     selectedActivityButton = null;
-            // }
             return;
         }
 
-        // Si le bouton à sélectionner est déjà celui qui est sélectionné, ne rien faire.
         if (selectedActivityButton == buttonToSelect) {
             return;
         }
 
-        // Désélectionner l'ancien bouton s'il existe
         if (selectedActivityButton != null) {
             selectedActivityButton.setSelected(false);
         }
 
-        // Sélectionner le nouveau bouton
         buttonToSelect.setSelected(true);
         selectedActivityButton = buttonToSelect;
     }
@@ -172,20 +152,14 @@ public class ActivitiesFragment extends Fragment {
             String message = String.format(Locale.getDefault(),
                     "Activité '%s' ajoutée pour %s heures.",
                     activityType, durationText);
-            Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show(); // Afficher le message
+            Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show();
         });
     }
 
     private void setupChipGroupListener() {
         if (chipGroupFilter == null) return;
         chipGroupFilter.setOnCheckedChangeListener((group, checkedId) -> {
-            // Si aucun chip n'est sélectionné (possible si clearCheckable est true et l'utilisateur désélectionne)
-            // On peut choisir de forcer une sélection par défaut ou gérer ce cas.
             if (checkedId == View.NO_ID) {
-                // Par exemple, sélectionner le premier chip par défaut si rien n'est coché.
-                // chipGroupFilter.check(R.id.chipToutes); // Déclenchera à nouveau le listener
-                // Ou simplement ne rien filtrer / afficher un message.
-                // Pour l'instant, on suppose qu'un chip est toujours coché.
             } else {
                 filterActivities(checkedId);
             }
@@ -206,7 +180,7 @@ public class ActivitiesFragment extends Fragment {
 
                 if (showAll) {
                     shouldBeVisible = true;
-                } else { // chipPopulaires est coché
+                } else {
                     shouldBeVisible = (tag != null && "popular".equals(tag.toString()));
                 }
 
@@ -214,28 +188,17 @@ public class ActivitiesFragment extends Fragment {
                     button.setVisibility(View.VISIBLE);
                 } else {
                     button.setVisibility(View.GONE);
-                    // Si ce bouton caché était celui sélectionné, on ne le désélectionne pas encore ici,
-                    // car selectedActivityButton pourrait être ce bouton.
-                    // La désélection du selectedActivityButton caché est gérée après la boucle.
-                    // Cependant, si un bouton est caché et N'EST PAS le selectedActivityButton mais est quand même
-                    // dans un état sélectionné (ce qui ne devrait pas arriver avec une logique correcte),
-                    // on pourrait le forcer ici : if (button.isSelected()) button.setSelected(false);
                 }
             }
         }
 
-        // Après avoir mis à jour la visibilité de tous les boutons :
         if (selectedActivityButton != null && selectedActivityButton.getVisibility() == View.GONE) {
-            // Le bouton précédemment sélectionné est maintenant caché.
-            // Il faut le désélectionner visuellement et logiquement.
-            selectedActivityButton.setSelected(false); // <- CORRECTION IMPORTANTE
+            selectedActivityButton.setSelected(false);
             selectedActivityButton = null;
-            selectFirstVisibleActivity(); // Sélectionner un nouveau bouton parmi les visibles
+            selectFirstVisibleActivity();
         } else if (selectedActivityButton == null) {
-            // Aucun bouton n'est actuellement sélectionné (soit au démarrage, soit après la désélection ci-dessus)
             selectFirstVisibleActivity();
         }
-        // Si selectedActivityButton n'est pas null et est visible, il reste sélectionné, rien à faire.
     }
 
     private void selectFirstVisibleActivity() {
@@ -245,21 +208,17 @@ public class ActivitiesFragment extends Fragment {
             View child = gridActivities.getChildAt(i);
             if (child instanceof ImageButton && child.getVisibility() == View.VISIBLE) {
                 firstVisibleButton = (ImageButton) child;
-                break; // On a trouvé le premier, on peut arrêter
+                break;
             }
         }
 
         if (firstVisibleButton != null) {
-            selectActivityButton(firstVisibleButton); // Ceci va gérer la désélection de l'ancien s'il y en avait un
+            selectActivityButton(firstVisibleButton);
         } else {
-            // Aucun bouton n'est visible. S'il y avait un bouton sélectionné, il faut le désélectionner.
             if (selectedActivityButton != null) {
-                selectedActivityButton.setSelected(false); // <- CORRECTION IMPORTANTE
+                selectedActivityButton.setSelected(false);
                 selectedActivityButton = null;
             }
         }
     }
-
-    // Supprimer cette méthode si elle est un duplicata ou une version erronée de selectActivityButton
-    // private void SelectActivityButton(ImageButton buttonToSelect){ ... }
 }

@@ -10,7 +10,7 @@
     <string name="mois">Mois</string>
     <string name="annee">Année</string>
     <string name="activity_days_description">Jours d\'activité</string>
-    <string name="heart_description">BPM</string>
+    <string name="heart_description">Moyenne BPM</string>
     <string name="activity_time_description">Temps d\'activité</string>
     <string name="cereals">Céréales</string>
     <string name="fish">Poissons</string>
